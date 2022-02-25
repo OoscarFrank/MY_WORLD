@@ -126,17 +126,21 @@ void launch_event(sfEvent event, sfRenderWindow *window, maps *m, cursor *c)
     button_mouse(window, m, c);
 }
 
+int diff_color(maps *m, int i, int j, int max)
+{
+    int tmp = (3 * (j % 2)) + (m->td_map[i][j] / 2) + (3 * (i % 2));
+    return tmp <= max ? tmp : max;
+}
+
 sfColor choose_color(int i, int j, maps *m)
 {
     if (m->td_map[i][j] < 0)
-        return sfColor_fromRGB(30,144,255);
-    if (m->td_map[i][j] > 5 && m->td_map[i][j])
-        return sfColor_fromRGB(105 + ((3 * (j % 2)) + (3 * (i % 2))), 105 +
-        ((3 * (j % 2)) + (3 * (i % 2))),
-        105 + ((3 * (j % 2)) + (3 * (i % 2))));
-    if (m->td_map[i][j] >= 10)
-        return sfColor_fromRGB(255,250,250);
-    return sfColor_fromRGB(91, 139 + ((3 * (j % 2)) + (3 * (i % 2))), 50);
+        return sfColor_fromRGB(30 + diff_color(m, i, j, 60),144 + diff_color(m, i, j, 150), 255);
+    if (m->td_map[i][j] > 5 && m->td_map[i][j] < 50)
+        return sfColor_fromRGB(105 + diff_color(m, i, j, 200), 105 + diff_color(m, i, j, 200), 105 + diff_color(m, i, j, 200));
+    if (m->td_map[i][j] >= 50)
+        return sfColor_fromRGB(200 + diff_color(m, i, j, 54), 200 + diff_color(m, i, j, 54), 200 + diff_color(m, i, j, 54));
+    return sfColor_fromRGB(91, 139 + diff_color(m, i, j, 255), 50);
 }
 
 void my_world(sfRenderWindow *wnd, maps *m, cursor *c)
