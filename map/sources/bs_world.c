@@ -83,6 +83,58 @@ void create_line(int i, int j, maps *m, sfRenderWindow *wnd)
     sfVertexArray_append(vertex_array, vertex4);
     sfVertexArray_setPrimitiveType(vertex_array, sfQuads);
     sfRenderWindow_drawVertexArray(wnd, vertex_array, NULL);
+    sfVertexArray_destroy(vertex_array);
+}
+
+void water_iso_point(maps *m, int i, sfVector2f *tmp, tmp_water w)
+{
+    float angle = m->al * (M_PI / 180);
+    float ang_h = m->be * (M_PI / 180);
+    float angle_b = 35 * (M_PI / 180);
+    float angle_a = 45 * (M_PI / 180);
+
+    w.x -= MAP_X / 2;
+    w.y -= MAP_Y / 2;
+    w.tmp_x = w.x * cos(angle) - w.y * sin(angle);
+    w.tmp_y = w.y * cos(angle) + w.x * sin(angle);
+    w.back_x = w.tmp_x;
+    w.tmp_x = w.back_x * cos(ang_h) - w.z * sin(ang_h);
+    w.tmp_z = w.z * cos(ang_h) + w.back_x * sin(ang_h);
+    w.x += MAP_X / 2;
+    w.y += MAP_Y / 2;
+    tmp[i].y = sin(angle_b) * (w.tmp_y + sin(angle_b) * (w.tmp_x - w.tmp_z));
+    tmp[i].x = cos(angle_a) * (w.tmp_x - cos(angle_a) * w.tmp_y);
+    tmp[i].y *= m->zoom;
+    tmp[i].x *= m->zoom;
+    tmp[i].x += m->decal_x;
+    tmp[i].y += m->decal_y;
+}
+
+void draw_water(sfRenderWindow *wnd, sfVector2f *tmp)
+{
+    sfColor color = sfColor_fromRGBA(28 , 120, 255,120);
+    sfVertexArray *vertex_array = sfVertexArray_create();
+    sfVertex vertex1 = {tmp[0], color};
+    sfVertex vertex2 = {tmp[1], color};
+    sfVertex vertex3 = {tmp[2], color};
+    sfVertex vertex4 = {tmp[3],  color};
+    sfVertexArray_append(vertex_array, vertex1);
+    sfVertexArray_append(vertex_array, vertex3);
+    sfVertexArray_append(vertex_array, vertex2);
+    sfVertexArray_append(vertex_array, vertex4);
+    sfVertexArray_setPrimitiveType(vertex_array, sfQuads);
+    sfRenderWindow_drawVertexArray(wnd, vertex_array, NULL);
+    sfVertexArray_destroy(vertex_array);
+}
+
+void launch_water(maps *m , sfRenderWindow *wnd)
+{
+    sfVector2f *tmp = malloc(sizeof(sfVector2f) * 5);
+    water_iso_point(m, 0, tmp, (tmp_water) {0, 0, 0, 0, 0, 0, 0});
+    water_iso_point(m, 1, tmp, (tmp_water) {MAP_X, MAP_Y, 0, 0, 0, 0, 0});
+    water_iso_point(m, 2, tmp, (tmp_water) {0, MAP_Y, 0, 0, 0, 0, 0});
+    water_iso_point(m, 3, tmp, (tmp_water) {MAP_X, 0, 0, 0, 0, 0, 0});
+    draw_water(wnd, tmp);
 }
 
 void draw_2d_map(sfRenderWindow *wnd, maps *m)
@@ -94,4 +146,5 @@ void draw_2d_map(sfRenderWindow *wnd, maps *m)
         draw_zero(m, wnd);
     if ((m->al >= 110) && (m->al < 150))
         draw_one_one_zero(m, wnd);
+    launch_water(m, wnd);
 }

@@ -62,6 +62,16 @@ typedef struct {
     sfSprite *nw;
 } cursor;
 
+typedef struct {
+    int x;
+    int y;
+    int z;
+    float tmp_x;
+    float tmp_y;
+    float tmp_z;
+    float back_x;
+} tmp_water;
+
 void init_cursor(cursor *c);
 void init_maps(maps *m);
 //void move_cursor(cursor *c, sfRenderWindow *wnd);

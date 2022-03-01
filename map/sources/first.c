@@ -134,11 +134,9 @@ int diff_color(maps *m, int i, int j, int max)
 
 sfColor choose_color(int i, int j, maps *m)
 {
-    if (m->td_map[i][j] < 0)
-        return sfColor_fromRGB(30 + diff_color(m, i, j, 60),144 + diff_color(m, i, j, 150), 255);
     if (m->td_map[i][j] > 5 && m->td_map[i][j] < 50)
         return sfColor_fromRGB(105 + diff_color(m, i, j, 200), 105 + diff_color(m, i, j, 200), 105 + diff_color(m, i, j, 200));
-    if (m->td_map[i][j] >= 50)
+    if (m->td_map[i][j] >= 50 || m->td_map[i][j] < 0)
         return sfColor_fromRGB(200 + diff_color(m, i, j, 54), 200 + diff_color(m, i, j, 54), 200 + diff_color(m, i, j, 54));
     return sfColor_fromRGB(91, 139 + diff_color(m, i, j, 255), 50);
 }
