@@ -146,5 +146,5 @@ void draw_2d_map(sfRenderWindow *wnd, maps *m)
         draw_zero(m, wnd);
     if ((m->al >= 110) && (m->al < 150))
         draw_one_one_zero(m, wnd);
-    launch_water(m, wnd);
+    //launch_water(m, wnd);
 }
