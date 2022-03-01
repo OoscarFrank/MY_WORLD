@@ -73,6 +73,7 @@ int resume_game(window *wndw, options *opt, cursor *c, maps *m)
 int go_home(window *wndw, options *opt, cursor *c, maps *m)
 {
     opt->begin = 1;
+    return 0;
 }
 
 int open_p(window *wndw, options *opt, cursor *c, maps *m)
@@ -86,12 +87,14 @@ int open_p(window *wndw, options *opt, cursor *c, maps *m)
     opt->ar_btn[RESET_MAP].params = 1;
     opt->ar_btn[SHORTCUTS].params = 1;
     opt->ar_btn[OPEN_PARAMS].params = 0;
+    return 0;
 }
 
 int open_params(window *wndw, options *opt, cursor *c, maps *m)
 {
     opt->params = 1;
     opt->mv = 1;
+    return 0;
 }
 
 int close_params(window *wndw, options *opt, cursor *c, maps *m)
@@ -106,6 +109,7 @@ int close_params(window *wndw, options *opt, cursor *c, maps *m)
     opt->ar_btn[SHORTCUTS].params = 0;
     opt->ar_btn[OPEN_PARAMS].params = 1;
     opt->mv = -1;
+    return 0;
 }
 
 int open_view(window *wndw, options *opt, cursor *c, maps *m)
@@ -116,6 +120,7 @@ int open_view(window *wndw, options *opt, cursor *c, maps *m)
     opt->ar_btn[FLECHE_GAUCHE].params = 1;
     opt->ar_btn[CLOSE_VIEW].params = 1;
     opt->params = 6;
+    return 0;
 }
 
 int close_view(window *wndw, options *opt, cursor *c, maps *m)
@@ -126,6 +131,7 @@ int close_view(window *wndw, options *opt, cursor *c, maps *m)
     opt->ar_btn[FLECHE_GAUCHE].params = 0;
     opt->ar_btn[CLOSE_VIEW].params = 0;
     opt->params = 1;
+    return 0;
 }
 
 int open_turn(window *wndw, options *opt, cursor *c, maps *m)
@@ -136,6 +142,7 @@ int open_turn(window *wndw, options *opt, cursor *c, maps *m)
     opt->ar_btn[TURN_MAP_B].params = 1;
     opt->ar_btn[CLOSE_TURN].params = 1;
     opt->params = 4;
+    return 0;
 }
 
 int close_turn(window *wndw, options *opt, cursor *c, maps *m)
@@ -146,6 +153,7 @@ int close_turn(window *wndw, options *opt, cursor *c, maps *m)
     opt->ar_btn[TURN_MAP_B].params = 0;
     opt->ar_btn[CLOSE_TURN].params = 0;
     opt->params = 1;
+    return 0;
 }
 
 int open_zoom(window *wndw, options *opt, cursor *c, maps *m)
@@ -154,6 +162,7 @@ int open_zoom(window *wndw, options *opt, cursor *c, maps *m)
     opt->ar_btn[DZOOM].params = 1;
     opt->ar_btn[CLOSE_ZOOM].params = 1;
     opt->params = 4;
+    return 0;
 }
 
 int close_zoom(window *wndw, options *opt, cursor *c, maps *m)
@@ -162,18 +171,63 @@ int close_zoom(window *wndw, options *opt, cursor *c, maps *m)
     opt->ar_btn[DZOOM].params = 0;
     opt->ar_btn[CLOSE_ZOOM].params = 0;
     opt->params = 1;
+    return 0;
 }
 
 int open_shortcuts(window *wndw, options *opt, cursor *c, maps *m)
 {
     opt->ar_btn[CLOSE_SHORTCUTS].params = 1;
     opt->params = 5;
+    return 0;
 }
 
 int close_shortcuts(window *wndw, options *opt, cursor *c, maps *m)
 {
     opt->ar_btn[CLOSE_SHORTCUTS].params = 0;
     opt->params = 1;
+    return 0;
+}
+
+int zoom_in(window *wndw, options *opt, cursor *c, maps *m)
+{
+    ++m->zoom;
+    return 0;
+}
+
+int zoom_out(window *wndw, options *opt, cursor *c, maps *m)
+{
+    --m->zoom;
+    return 0;
+}
+
+int reset_button(window *wndw, options *opt, cursor *c, maps *m)
+{
+    reset_map(m);
+    return 0;
+}
+
+int go_left(window *wndw, options *opt, cursor *c, maps *m)
+{
+    m->decal_x -= 50;
+    return 0;
+}
+
+int go_right(window *wndw, options *opt, cursor *c, maps *m)
+{
+    m->decal_x += 50;
+    return 0;
+}
+
+int go_down(window *wndw, options *opt, cursor *c, maps *m)
+{
+    m->decal_y += 50;
+    return 0;
+}
+
+int go_up(window *wndw, options *opt, cursor *c, maps *m)
+{
+    m->decal_y -= 50;
+    return 0;
 }
 
 void second_part_button(window *wndw, options *opt, cursor *c, maps *m)
@@ -214,19 +268,19 @@ void second_part_button(window *wndw, options *opt, cursor *c, maps *m)
         (sfVector2f){140, 300});
     opt->ar_btn[OPEN_CHG_VIEW].params = 0;
     opt->ar_btn[OPEN_CHG_VIEW].screen = 0;
-    factory_button(opt, &close_params, (sfIntRect){2021, 0, 60, 60},
+    factory_button(opt, &go_left, (sfIntRect){2021, 0, 60, 60},
         (sfVector2f){1680, 1000});
     opt->ar_btn[FLECHE_GAUCHE].params = 0;
     opt->ar_btn[FLECHE_GAUCHE].screen = 0;
-    factory_button(opt, &close_params, (sfIntRect){2081, 0, 60, 60},
+    factory_button(opt, &go_down, (sfIntRect){2081, 0, 60, 60},
         (sfVector2f){1760, 1000});
     opt->ar_btn[FLECHE_BAS].params = 0;
     opt->ar_btn[FLECHE_BAS].screen = 0;
-    factory_button(opt, &close_params, (sfIntRect){1901, 0, 60, 60},
+    factory_button(opt, &go_right, (sfIntRect){1901, 0, 60, 60},
         (sfVector2f){1840, 1000});
     opt->ar_btn[FLECHE_DROITE].params = 0;
     opt->ar_btn[FLECHE_DROITE].screen = 0;
-    factory_button(opt, &close_params, (sfIntRect){1961, 0, 60, 60},
+    factory_button(opt, &go_up, (sfIntRect){1961, 0, 60, 60},
         (sfVector2f){1760, 920});
     opt->ar_btn[FLECHE_HAUT].params = 0;
     opt->ar_btn[FLECHE_HAUT].screen = 0;
@@ -262,11 +316,11 @@ void second_part_button(window *wndw, options *opt, cursor *c, maps *m)
         (sfVector2f){140, 420});
     opt->ar_btn[OPEN_ZOOM].params = 0;
     opt->ar_btn[OPEN_ZOOM].screen = 0;
-    factory_button(opt, &close_params, (sfIntRect){2141, 0, 60, 60},
+    factory_button(opt, &zoom_in, (sfIntRect){2141, 0, 60, 60},
         (sfVector2f){1850, 80});
     opt->ar_btn[ZOOM].params = 0;
     opt->ar_btn[ZOOM].screen = 0;
-    factory_button(opt, &close_params, (sfIntRect){2201, 0, 60, 60},
+    factory_button(opt, &zoom_out, (sfIntRect){2201, 0, 60, 60},
         (sfVector2f){1850, 160});
     opt->ar_btn[DZOOM].params = 0;
     opt->ar_btn[DZOOM].screen = 0;
@@ -274,7 +328,7 @@ void second_part_button(window *wndw, options *opt, cursor *c, maps *m)
         (sfVector2f){1800, 80});
     opt->ar_btn[CLOSE_ZOOM].params = 0;
     opt->ar_btn[CLOSE_ZOOM].screen = 0;
-    factory_button(opt, &close_zoom, (sfIntRect){3178, 0, 200, 40},
+    factory_button(opt, &reset_button, (sfIntRect){3178, 0, 200, 40},
         (sfVector2f){140, 480});
     opt->ar_btn[RESET_MAP].params = 0;
     opt->ar_btn[RESET_MAP].screen = 0;

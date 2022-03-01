@@ -142,6 +142,7 @@ typedef struct button{
     int (*launch)(window *wndw, options *opt, cursor *c, maps *m);
 }button;
 
+void reset_map(maps *m);
 int quit_button(window *wndw, options *opt, cursor *c, maps *m);
 int main_func(window *wndw, options *sprt);
 void params_window(window *wndw, options *sprt);
