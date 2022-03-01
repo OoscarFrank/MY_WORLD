@@ -208,13 +208,13 @@ int reset_button(window *wndw, options *opt, cursor *c, maps *m)
 
 int go_left(window *wndw, options *opt, cursor *c, maps *m)
 {
-    m->decal_x -= 50;
+    m->decal_x += 50;
     return 0;
 }
 
 int go_right(window *wndw, options *opt, cursor *c, maps *m)
 {
-    m->decal_x += 50;
+    m->decal_x -= 50;
     return 0;
 }
 
@@ -227,6 +227,30 @@ int go_down(window *wndw, options *opt, cursor *c, maps *m)
 int go_up(window *wndw, options *opt, cursor *c, maps *m)
 {
     m->decal_y -= 50;
+    return 0;
+}
+
+int turn_left(window *wndw, options *opt, cursor *c, maps *m)
+{
+    key_q(m);
+    return 0;
+}
+
+int turn_right(window *wndw, options *opt, cursor *c, maps *m)
+{
+    key_d(m);
+    return 0;
+}
+
+int turn_high(window *wndw, options *opt, cursor *c, maps *m)
+{
+    ++m->be;
+    return 0;
+}
+
+int turn_low(window *wndw, options *opt, cursor *c, maps *m)
+{
+    --m->be;
     return 0;
 }
 
@@ -292,19 +316,19 @@ void second_part_button(window *wndw, options *opt, cursor *c, maps *m)
         (sfVector2f){140, 360});
     opt->ar_btn[OPEN_TURN].params = 0;
     opt->ar_btn[OPEN_TURN].screen = 0;
-    factory_button(opt, &close_params, (sfIntRect){2261, 0, 60, 60},
+    factory_button(opt, &turn_left, (sfIntRect){2261, 0, 60, 60},
         (sfVector2f){1680, 800});
     opt->ar_btn[TURN_MAP_L].params = 0;
     opt->ar_btn[TURN_MAP_L].screen = 0;
-    factory_button(opt, &close_params, (sfIntRect){2441, 0, 60, 60},
+    factory_button(opt, &turn_low, (sfIntRect){2441, 0, 60, 60},
         (sfVector2f){1760, 800});
     opt->ar_btn[TURN_MAP_B].params = 0;
     opt->ar_btn[TURN_MAP_B].screen = 0;
-    factory_button(opt, &close_params, (sfIntRect){2321, 0, 60, 60},
+    factory_button(opt, &turn_right, (sfIntRect){2321, 0, 60, 60},
         (sfVector2f){1840, 800});
     opt->ar_btn[TURN_MAP_R].params = 0;
     opt->ar_btn[TURN_MAP_R].screen = 0;
-    factory_button(opt, &close_params, (sfIntRect){2381, 0, 60, 60},
+    factory_button(opt, &turn_high, (sfIntRect){2381, 0, 60, 60},
         (sfVector2f){1760, 720});
     opt->ar_btn[TURN_MAP_H].params = 0;
     opt->ar_btn[TURN_MAP_H].screen = 0;
