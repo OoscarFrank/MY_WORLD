@@ -111,9 +111,9 @@ void go_in_array(maps *m, mouse_c p)
 void button_mouse(sfRenderWindow *window, maps *m, cursor *c)
 {
     sfVector2i pos = sfMouse_getPosition(NULL);
-    if (sfMouse_isButtonPressed(sfMouseLeft))
+    if (sfMouse_isButtonPressed(sfMouseLeft) && c->is_button)
         go_in_array(m, (mouse_c) {pos.x, pos.y, 1, c->radius / 2});
-    if (sfMouse_isButtonPressed(sfMouseRight))
+    if (sfMouse_isButtonPressed(sfMouseRight) && c->is_button)
         go_in_array(m, (mouse_c) {pos.x, pos.y, - 1, c->radius / 2});
     if (sfMouse_isButtonPressed(sfMouseMiddle))
         c->style = c->style ? 0 : 1;

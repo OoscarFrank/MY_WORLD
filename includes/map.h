@@ -61,6 +61,7 @@ typedef struct {
     int radius;
     int style;
     sfSprite *nw;
+    int is_button;
 } cursor;
 
 typedef struct {
@@ -163,7 +164,7 @@ void init_cuts(window *wndw, options *sprt);
 void draw_spcuts(window *wndw, options *sprt);
 void init_sprites(window *wndw, options *sprt);
 void linked_button(options *opt, window *wndw, cursor *c, maps *m);
-void is_touched_button(window *wndw, options *opt);
+void is_touched_button(window *wndw, options *opt, cursor *c);
 void catch_button(window *wndw, options *opt, sfEvent event, cursor *c, maps *m);
 typedef int (*ptr_f)(window *wndw, options *opt, cursor *c, maps *m);
 void click_button(window *wndw, options *opt, sfEvent event);

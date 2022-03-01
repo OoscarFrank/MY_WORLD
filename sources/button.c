@@ -7,7 +7,7 @@
 
 #include "../includes/map.h"
 
-void touch_button(window *wndw, options *opt, int i, sfVector2i pos)
+void touch_button(window *wndw, options *opt, int i, sfVector2i pos, cursor *c)
 {
     sfVector2f yes = sfSprite_getPosition(opt->ar_btn[i].sprt);
     sfIntRect tmp = {yes.x, yes.y, opt->ar_btn[i].place.width,
@@ -17,17 +17,20 @@ void touch_button(window *wndw, options *opt, int i, sfVector2i pos)
     if (sfIntRect_contains(&tmp, pos.x, pos.y) && opt->ar_btn[i].event != 3) {
         sfSprite_setTextureRect(opt->ar_btn[i].sprt, new);
         opt->ar_btn[i].event = 0;
-        } else if (opt->ar_btn[i].event != 3)
+        c->is_button = 1;
+        } else if (opt->ar_btn[i].event != 3) {
+        c->is_button = 0;
         sfSprite_setTextureRect(opt->ar_btn[i].sprt, opt->ar_btn[i].place);
+    }
     if (opt->ar_btn[i].screen == opt->begin && opt->ar_btn[i].params)
         sfRenderWindow_drawSprite(wndw->window, opt->ar_btn[i].sprt, NULL);
 }
 
-void is_touched_button(window *wndw, options *opt)
+void is_touched_button(window *wndw, options *opt, cursor *c)
 {
     sfVector2i pos = sfMouse_getPosition(NULL);
     for (int i = 0; i < opt->len_button; ++i)
-        touch_button(wndw, opt, i, pos);
+        touch_button(wndw, opt, i, pos, c);
 }
 
 void factory_button(options *opt, ptr_f fc, sfIntRect old, sfVector2f pos)
