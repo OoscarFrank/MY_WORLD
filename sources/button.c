@@ -5,7 +5,7 @@
 ** button gestion
 */
 
-#include "../includes/world.h"
+#include "../includes/map.h"
 
 void touch_button(window *wndw, options *opt, int i, sfVector2i pos)
 {
@@ -45,37 +45,37 @@ void factory_button(options *opt, ptr_f fc, sfIntRect old, sfVector2f pos)
     ++opt->len_button;
 }
 
-int quit_button(window *wndw, options *opt)
+int quit_button(window *wndw, options *opt, cursor *c, maps *m)
 {
     sfRenderWindow_close(wndw->window);
     return 0;
 }
 
-int continue_button(window *wndw, options *opt)
+int continue_button(window *wndw, options *opt, cursor *c, maps *m)
 {
     opt->begin = 0;
     return 0;
 }
 
-int open_menu(window *wndw, options *opt)
+int open_menu(window *wndw, options *opt, cursor *c, maps *m)
 {
     sfEvent event;
     opt->begin = 3;
     return 0;
 }
 
-int resume_game(window *wndw, options *opt)
+int resume_game(window *wndw, options *opt, cursor *c, maps *m)
 {
     opt->begin = 0;
     return 0;
 }
 
-int go_home(window *wndw, options *opt)
+int go_home(window *wndw, options *opt, cursor *c, maps *m)
 {
     opt->begin = 1;
 }
 
-int open_p(window *wndw, options *opt)
+int open_p(window *wndw, options *opt, cursor *c, maps *m)
 {
     opt->ar_btn[CLOSE_PARAMS].params = 1;
     opt->ar_btn[SAVE_FILE].params = 1;
@@ -88,13 +88,13 @@ int open_p(window *wndw, options *opt)
     opt->ar_btn[OPEN_PARAMS].params = 0;
 }
 
-int open_params(window *wndw, options *opt)
+int open_params(window *wndw, options *opt, cursor *c, maps *m)
 {
     opt->params = 1;
     opt->mv = 1;
 }
 
-int close_params(window *wndw, options *opt)
+int close_params(window *wndw, options *opt, cursor *c, maps *m)
 {
     opt->ar_btn[CLOSE_PARAMS].params = 0;
     opt->ar_btn[SAVE_FILE].params = 0;
@@ -108,7 +108,7 @@ int close_params(window *wndw, options *opt)
     opt->mv = -1;
 }
 
-int open_view(window *wndw, options *opt)
+int open_view(window *wndw, options *opt, cursor *c, maps *m)
 {
     opt->ar_btn[FLECHE_BAS].params = 1;
     opt->ar_btn[FLECHE_HAUT].params = 1;
@@ -118,7 +118,7 @@ int open_view(window *wndw, options *opt)
     opt->params = 6;
 }
 
-int close_view(window *wndw, options *opt)
+int close_view(window *wndw, options *opt, cursor *c, maps *m)
 {
     opt->ar_btn[FLECHE_BAS].params = 0;
     opt->ar_btn[FLECHE_HAUT].params = 0;
@@ -128,7 +128,7 @@ int close_view(window *wndw, options *opt)
     opt->params = 1;
 }
 
-int open_turn(window *wndw, options *opt)
+int open_turn(window *wndw, options *opt, cursor *c, maps *m)
 {
     opt->ar_btn[TURN_MAP_L].params = 1;
     opt->ar_btn[TURN_MAP_R].params = 1;
@@ -138,7 +138,7 @@ int open_turn(window *wndw, options *opt)
     opt->params = 4;
 }
 
-int close_turn(window *wndw, options *opt)
+int close_turn(window *wndw, options *opt, cursor *c, maps *m)
 {
     opt->ar_btn[TURN_MAP_L].params = 0;
     opt->ar_btn[TURN_MAP_R].params = 0;
@@ -148,7 +148,7 @@ int close_turn(window *wndw, options *opt)
     opt->params = 1;
 }
 
-int open_zoom(window *wndw, options *opt)
+int open_zoom(window *wndw, options *opt, cursor *c, maps *m)
 {
     opt->ar_btn[ZOOM].params = 1;
     opt->ar_btn[DZOOM].params = 1;
@@ -156,7 +156,7 @@ int open_zoom(window *wndw, options *opt)
     opt->params = 4;
 }
 
-int close_zoom(window *wndw, options *opt)
+int close_zoom(window *wndw, options *opt, cursor *c, maps *m)
 {
     opt->ar_btn[ZOOM].params = 0;
     opt->ar_btn[DZOOM].params = 0;
@@ -164,19 +164,19 @@ int close_zoom(window *wndw, options *opt)
     opt->params = 1;
 }
 
-int open_shortcuts(window *wndw, options *opt)
+int open_shortcuts(window *wndw, options *opt, cursor *c, maps *m)
 {
     opt->ar_btn[CLOSE_SHORTCUTS].params = 1;
     opt->params = 5;
 }
 
-int close_shortcuts(window *wndw, options *opt)
+int close_shortcuts(window *wndw, options *opt, cursor *c, maps *m)
 {
     opt->ar_btn[CLOSE_SHORTCUTS].params = 0;
     opt->params = 1;
 }
 
-void second_part_button(options *opt, window *wndw)
+void second_part_button(window *wndw, options *opt, cursor *c, maps *m)
 {
     factory_button(opt, &open_menu, (sfIntRect){477, 0, 200, 40},
                    (sfVector2f){25, 10});
@@ -288,7 +288,7 @@ void second_part_button(options *opt, window *wndw)
     opt->ar_btn[CLOSE_SHORTCUTS].screen = 0;
 }
 
-void linked_button(options *opt, window *wndw)
+void linked_button(options *opt, window *wndw, cursor *c, maps *m)
 {
     opt->t = sfTexture_createFromFile("ressources/buttons.png", NULL);
     opt->ar_btn = malloc(sizeof(button) * 30);
@@ -305,7 +305,7 @@ void linked_button(options *opt, window *wndw)
                    (sfVector2f){1830, 20});
     opt->ar_btn[ESCAPE_PRCP].params = 1;
     opt->ar_btn[ESCAPE_PRCP].screen = 0;
-    second_part_button(opt, wndw);
+    second_part_button(wndw, opt, c, m);
 }
 
 void move_rect_pressed(options *opt, int i)
@@ -316,7 +316,7 @@ void move_rect_pressed(options *opt, int i)
     opt->ar_btn[i].event = 3;
 }
 
-void catch_button(window *wndw, options *opt, sfEvent event)
+void catch_button(window *wndw, options *opt, sfEvent event, cursor *c, maps *m)
 {
     for (int i = 0; i < opt->len_button; ++i) {
         if (opt->ar_btn[i].params == 1 && ((event.mouseButton.x >= opt->ar_btn[i].pos.x) &&
@@ -325,7 +325,7 @@ void catch_button(window *wndw, options *opt, sfEvent event)
         opt->ar_btn[i].pos.y) && (event.mouseButton.y <=
         (opt->ar_btn[i].pos.y + opt->ar_btn[i].place.height) &&
         opt->ar_btn[i].screen == opt->begin)))
-            (*(opt->ar_btn[i].launch))(wndw, opt);
+            (*(opt->ar_btn[i].launch))(wndw, opt, c, m);
         opt->ar_btn[i].event = 0;
     }
 }

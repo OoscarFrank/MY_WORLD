@@ -5,7 +5,7 @@
 ** init_sprites.c
 */
 
-#include "../includes/world.h"
+#include "../includes/map.h"
 
 void init_sprites(window *wndw, options *sprt)
 {

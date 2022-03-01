@@ -5,7 +5,7 @@
 ** main.c
 */
 
-#include "../includes/world.h"
+#include "../includes/map.h"
 
 int call_main_func(char *str)
 {

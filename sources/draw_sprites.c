@@ -5,7 +5,7 @@
 ** draw_sprites.c
 */
 
-#include "../includes/world.h"
+#include "../includes/map.h"
 
 void draw_spwelcome(window *wndw, options *sprt)
 {

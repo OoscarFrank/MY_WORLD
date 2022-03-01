@@ -39,8 +39,8 @@ void init_maps(maps *m)
 
 void init_cursor(cursor *c)
 {
-    c->t = sfTexture_create(width, height);
-    c->framebuffer = malloc(sizeof(sfUint8) * height * width * 4 * 8);
+    c->t = sfTexture_create(WIDTH, HEIGHT);
+    c->framebuffer = malloc(sizeof(sfUint8) * HEIGHT * WIDTH * 4 * 8);
     c->s = sfSprite_create();
     c->radius = 100;
     c->style = 0;

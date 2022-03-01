@@ -6,7 +6,6 @@
 */
 
 #include "../includes/map.h"
-#include "../includes/world.h"
 
 void mouse_event(sfEvent event, sfRenderWindow *window, maps *m, cursor *c)
 {
@@ -126,7 +125,7 @@ void launch_event(maps *m, cursor *c, window *wndw, options *sprt)
 
     while (sfRenderWindow_pollEvent(wndw->window, &event)) {
     if (event.type == sfEvtMouseButtonReleased)
-        catch_button(wndw, sprt, event);
+        catch_button(wndw, sprt, event, c, m);
     if (event.type == sfEvtMouseButtonPressed)
         click_button(wndw, sprt, event);
     if (event.type == sfEvtClosed)
@@ -162,25 +161,3 @@ void my_world(sfRenderWindow *wnd, maps *m, cursor *c)
     draw_2d_map(wnd, m);
     move_cursor(c, wnd, m);
 }
-
-/*
-int main(void)
-{
-    maps *m = malloc(sizeof(maps) + 1);
-    cursor *c = malloc(sizeof(cursor) + 1);
-    sfEvent event;
-    init_cursor(c);
-    init_maps(m);
-    sfVideoMode mode = {1920, 1080, 32};
-    sfRenderWindow *wnd = sfRenderWindow_create(mode, "w", sfFullscreen, NULL);
-    sfRenderWindow_setMouseCursorVisible(wnd, sfFalse);
-    while (sfRenderWindow_isOpen(wnd)) {
-        while (sfRenderWindow_pollEvent(wnd, &event))
-            launch_event(event, wnd, m, c);
-        my_world(wnd, m, c);
-        sfRenderWindow_display(wnd);
-    }
-    return 0;
-}
-
-*/

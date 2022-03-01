@@ -5,8 +5,8 @@
 ** run
 */
 
-#ifndef WORLD_H_
-    #define WORLD_H_
+#ifndef MAP_H_
+    #define MAP_H_
 
     #include <SFML/Graphics.h>
     #include <stdlib.h>
@@ -29,9 +29,10 @@
     #include <sys/types.h>
     #include <sys/stat.h>
     #include <fcntl.h>
-    #define height 1080
-    #define width 1920
-
+    //#define height 1080
+    //#define width 1920
+    #define WIDTH 1920
+    #define HEIGHT 1080
     #define MAP_X 50
     #define MAP_Y 50
 
@@ -138,14 +139,13 @@ typedef struct button{
     sfSprite *sprt;
     sfIntRect place;
     sfVector2f pos;
-    int (*launch)(window *wndw, options *opt);
+    int (*launch)(window *wndw, options *opt, cursor *c, maps *m);
 }button;
 
+int quit_button(window *wndw, options *opt, cursor *c, maps *m);
 int main_func(window *wndw, options *sprt);
-
 void params_window(window *wndw, options *sprt);
 int event_window(window *wndw, options *sprt);
-
 void init_fond(window *wndw, options *otln);
 void draw_spfond(window *wndw, options *otln, int i);
 void init_off(window *wndw, options *sprt);
@@ -158,17 +158,13 @@ void init_menu(window *wndw, options *sprt);
 void draw_spmenu(window *wndw, options *sprt);
 void init_cuts(window *wndw, options *sprt);
 void draw_spcuts(window *wndw, options *sprt);
-
 void init_sprites(window *wndw, options *sprt);
-
-void linked_button(options *opt, window *wndw);
+void linked_button(options *opt, window *wndw, cursor *c, maps *m);
 void is_touched_button(window *wndw, options *opt);
-void catch_button(window *wndw, options *opt, sfEvent event);
-typedef int (*ptr_f)(window *wndw, options *opt);
+void catch_button(window *wndw, options *opt, sfEvent event, cursor *c, maps *m);
+typedef int (*ptr_f)(window *wndw, options *opt, cursor *c, maps *m);
 void click_button(window *wndw, options *opt, sfEvent event);
 void factory_button(options *opt, ptr_f fc, sfIntRect old, sfVector2f pos);
-int go_home(window *wndw, options *opt);
-int open_p(window *wndw, options *opt);
 void init_cursor(cursor *c);
 void init_maps(maps *m);
 int move_cursor(cursor *c, sfRenderWindow *wnd, maps *m);
@@ -179,4 +175,6 @@ void create_line(int i, int j, maps *m, sfRenderWindow *wnd);
 void draw_zero(maps *m, sfRenderWindow *wnd);
 void draw_five_five(maps *m, sfRenderWindow *wnd);
 void draw_one_one_zero(maps *m, sfRenderWindow *wnd);
+void launch_event(maps *m, cursor *c, window *wndw, options *sprt);
+void my_world(sfRenderWindow *wnd, maps *m, cursor *c);
 #endif

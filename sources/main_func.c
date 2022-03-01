@@ -19,7 +19,7 @@ int main_func(window *wndw, options *sprt)
     init_maps(m);
     params_window(wndw, sprt);
     init_sprites(wndw, sprt);
-    linked_button(sprt, wndw);
+    linked_button(sprt, wndw, c, m);
     while (sfRenderWindow_isOpen(wndw->window)) {
         sfRenderWindow_display(wndw->window);
         sfRenderWindow_clear(wndw->window, sfBlack);
@@ -33,9 +33,10 @@ int main_func(window *wndw, options *sprt)
         if (sprt->mv == -1 && i > - 5)
             --i;
         if (sprt->begin == 0 && sprt->params == 1 || sprt->params == 2 || sprt->params == 4 || sprt->params == 5 || sprt->params == 6)
-            draw_spfond(wndw, sprt, i);
+            //draw_spfond(wndw, sprt, i);
         if (sprt->begin == 0) {
             my_world(wndw->window, m, c);
+            draw_spfond(wndw, sprt, i);
             draw_spbarre(wndw, sprt);
         }
         if (sprt->begin == 3)

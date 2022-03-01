@@ -5,7 +5,7 @@
 ** interface.c
 */
 
-#include "../includes/world.h"
+#include "../includes/map.h"
 
 void init_welcome(window *wndw, options *sprt)
 {
