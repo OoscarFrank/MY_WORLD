@@ -41,7 +41,7 @@ typedef struct {
     float y;
     int delta;
     int radius;
-} mouse_c;
+}mouse_c;
 
 typedef struct {
     sfVector2f **map;
@@ -62,7 +62,7 @@ typedef struct {
     int style;
     sfSprite *nw;
     int is_button;
-} cursor;
+}cursor;
 
 typedef struct {
     int x;
@@ -72,7 +72,7 @@ typedef struct {
     float tmp_y;
     float tmp_z;
     float back_x;
-} tmp_water;
+}tmp_water;
 
 
 typedef struct {
@@ -181,4 +181,55 @@ void draw_five_five(maps *m, sfRenderWindow *wnd);
 void draw_one_one_zero(maps *m, sfRenderWindow *wnd);
 void launch_event(maps *m, cursor *c, window *wndw, options *sprt);
 void my_world(sfRenderWindow *wnd, maps *m, cursor *c);
+int open_p(window *wndw, options *opt);
+
+int quit_button(window *wndw, options *opt, cursor *c, maps *m);
+int continue_button(window *wndw, options *opt, cursor *c, maps *m);
+int open_menu(window *wndw, options *opt, cursor *c, maps *m);
+int resume_game(window *wndw, options *opt, cursor *c, maps *m);
+int go_home(window *wndw, options *opt, cursor *c, maps *m);
+
+int go_up(window *wndw, options *opt, cursor *c, maps *m);
+int turn_left(window *wndw, options *opt, cursor *c, maps *m);
+int turn_right(window *wndw, options *opt, cursor *c, maps *m);
+int turn_high(window *wndw, options *opt, cursor *c, maps *m);
+int turn_low(window *wndw, options *opt, cursor *c, maps *m);
+
+int zoom_out(window *wndw, options *opt, cursor *c, maps *m);
+int reset_button(window *wndw, options *opt, cursor *c, maps *m);
+int go_left(window *wndw, options *opt, cursor *c, maps *m);
+int go_right(window *wndw, options *opt, cursor *c, maps *m);
+int go_down(window *wndw, options *opt, cursor *c, maps *m);
+
+int close_params(window *wndw, options *opt, cursor *c, maps *m);
+int open_view(window *wndw, options *opt, cursor *c, maps *m);
+int close_view(window *wndw, options *opt, cursor *c, maps *m);
+int open_turn(window *wndw, options *opt, cursor *c, maps *m);
+int close_turn(window *wndw, options *opt, cursor *c, maps *m);
+
+int open_p(window *wndw, options *opt);
+int open_params(window *wndw, options *opt, cursor *c, maps *m);
+int open_zoom(window *wndw, options *opt, cursor *c, maps *m);
+int close_zoom(window *wndw, options *opt, cursor *c, maps *m);
+int open_shortcuts(window *wndw, options *opt, cursor *c, maps *m);
+
+int close_shortcuts(window *wndw, options *opt, cursor *c, maps *m);
+int zoom_in(window *wndw, options *opt, cursor *c, maps *m);
+
+void linked_button(options *opt, window *wndw, cursor *c, maps *m);
+void second_part_button(window *wndw, options *opt, cursor *c, maps *m);
+void third_part_button(window *wndw, options *opt, cursor *c, maps *m);
+void fourth_part_button(window *wndw, options *opt, cursor *c, maps *m);
+void fifth_part_button(window *wndw, options *opt, cursor *c, maps *m);
+
+void sixth_part_button(window *wndw, options *opt, cursor *c, maps *m);
+void seven_part_button(window *wndw, options *opt, cursor *c, maps *m);
+void eight_part_button(window *wndw, options *opt, cursor *c, maps *m);
+
+void catch_button(window *wndw, options *opt, sfEvent event, cursor *c,
+maps *m);
+void click_button(window *wndw, options *opt, sfEvent event);
+
+void move_rect_pressed(options *opt, int i);
+
 #endif

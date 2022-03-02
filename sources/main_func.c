@@ -32,7 +32,8 @@ int main_func(window *wndw, options *sprt)
             open_p(wndw, sprt);
         if (sprt->mv == -1 && i > - 5)
             --i;
-        if (sprt->begin == 0 && sprt->params == 1 || sprt->params == 2 || sprt->params == 4 || sprt->params == 5 || sprt->params == 6)
+        if (sprt->begin == 0 && sprt->params == 1 || sprt->params == 2 ||
+        sprt->params == 4 || sprt->params == 5 || sprt->params == 6)
             draw_spfond(wndw, sprt, i);
         if (sprt->begin == 0) {
             my_world(wndw->window, m, c);
