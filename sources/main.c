@@ -11,7 +11,9 @@ int call_main_func(char *str)
 {
     window *wndw = malloc(sizeof(window));
     options *sprt = malloc(sizeof(options));
-    main_func(wndw, sprt);
+    maps *m = malloc(sizeof(maps) + 1);
+    cursor *c = malloc(sizeof(cursor) + 1);
+    main_func(wndw, sprt, m, c);
 }
 
 int main(int ac, char **av)

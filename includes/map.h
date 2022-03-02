@@ -147,7 +147,7 @@ void key_q(maps *m);
 void key_d(maps *m);
 void reset_map(maps *m);
 int quit_button(window *wndw, options *opt, cursor *c, maps *m);
-int main_func(window *wndw, options *sprt);
+int main_func(window *wndw, options *sprt, maps *m, cursor *c);
 void params_window(window *wndw, options *sprt);
 int event_window(window *wndw, options *sprt);
 void init_fond(window *wndw, options *otln);
