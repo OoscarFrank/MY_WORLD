@@ -38,6 +38,8 @@ void key_d(maps *m)
 
 void move_event(sfEvent event, window *wndw, maps *m, options *sprt)
 {
+    if (event.key.code == sfKeyEscape)
+        sfRenderWindow_close(wndw->window);
     if (event.key.code == sfKeyZ)
         ++m->be;
     if (event.key.code == sfKeyS)
@@ -111,9 +113,11 @@ void go_in_array(maps *m, mouse_c p)
 void button_mouse(sfRenderWindow *window, maps *m, cursor *c)
 {
     sfVector2i pos = sfMouse_getPosition(NULL);
-    if (sfMouse_isButtonPressed(sfMouseLeft) && c->is_button)
+    if (c->is_button)
+        printf("touched\n");
+    if (sfMouse_isButtonPressed(sfMouseLeft) && !c->is_button)
         go_in_array(m, (mouse_c) {pos.x, pos.y, 1, c->radius / 2});
-    if (sfMouse_isButtonPressed(sfMouseRight) && c->is_button)
+    if (sfMouse_isButtonPressed(sfMouseRight) && !c->is_button)
         go_in_array(m, (mouse_c) {pos.x, pos.y, - 1, c->radius / 2});
     if (sfMouse_isButtonPressed(sfMouseMiddle))
         c->style = c->style ? 0 : 1;
@@ -124,19 +128,16 @@ void launch_event(maps *m, cursor *c, window *wndw, options *sprt)
     sfEvent event;
 
     while (sfRenderWindow_pollEvent(wndw->window, &event)) {
-    if (event.type == sfEvtMouseButtonReleased)
-        catch_button(wndw, sprt, event, c, m);
-    if (event.type == sfEvtMouseButtonPressed)
-        click_button(wndw, sprt, event);
-    if (event.type == sfEvtClosed)
-        sfRenderWindow_close(wndw->window);
-    if (event.type == sfEvtKeyPressed) {
-        if (event.key.code == sfKeyEscape)
+        if (event.type == sfEvtMouseButtonReleased)
+            catch_button(wndw, sprt, event, c, m);
+        if (event.type == sfEvtMouseButtonPressed)
+            click_button(wndw, sprt, event);
+        if (event.type == sfEvtClosed)
             sfRenderWindow_close(wndw->window);
+        if (event.type == sfEvtKeyPressed)
         move_event(event, wndw, m, sprt);
-    }
-    mouse_event(event, wndw->window, m, c);
-    button_mouse(wndw->window, m, c);
+        mouse_event(event, wndw->window, m, c);
+        button_mouse(wndw->window, m, c);
     }
 }
 

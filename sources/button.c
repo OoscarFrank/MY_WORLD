@@ -14,10 +14,13 @@ void touch_button(window *wndw, options *opt, int i, sfVector2i pos, cursor *c)
     opt->ar_btn[i].place.height};
     sfIntRect new = {opt->ar_btn[i].place.left, opt->ar_btn[i].place.height,
     opt->ar_btn[i].place.width, opt->ar_btn[i].place.height};
+    if (!sfIntRect_contains(&tmp, pos.x, pos.y))
+        c->is_button = 0;
+    else
+        c->is_button = 1;
     if (sfIntRect_contains(&tmp, pos.x, pos.y) && opt->ar_btn[i].event != 3) {
         sfSprite_setTextureRect(opt->ar_btn[i].sprt, new);
         opt->ar_btn[i].event = 0;
-        c->is_button = 1;
         } else if (opt->ar_btn[i].event != 3) {
         c->is_button = 0;
         sfSprite_setTextureRect(opt->ar_btn[i].sprt, opt->ar_btn[i].place);

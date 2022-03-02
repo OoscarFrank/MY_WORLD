@@ -33,8 +33,8 @@
     //#define width 1920
     #define WIDTH 1920
     #define HEIGHT 1080
-    #define MAP_X 50
-    #define MAP_Y 50
+    #define MAP_X 100
+    #define MAP_Y 100
 
 typedef struct {
     float x;

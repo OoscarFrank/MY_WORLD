@@ -33,8 +33,8 @@ void init_maps(maps *m)
     m->al = 0;
     m->be = 0;
     m->zoom = 50;
-    m->decal_x = MAP_X * 50;
-    m->decal_y = MAP_Y * 25;
+    m->decal_x = MAP_X / 50 + 700;
+    m->decal_y = MAP_Y / 50 + 700;
 }
 
 void init_cursor(cursor *c)
@@ -44,5 +44,6 @@ void init_cursor(cursor *c)
     c->s = sfSprite_create();
     c->radius = 100;
     c->style = 0;
+    c->is_button = 1;
     sfSprite_setTexture(c->s, c->t, sfTrue);
 }

@@ -36,13 +36,15 @@ int main_func(window *wndw, options *sprt)
             draw_spfond(wndw, sprt, i);
         if (sprt->begin == 0) {
             my_world(wndw->window, m, c);
-            draw_spbarre(wndw, sprt);
+            my_world(wndw->window, m, c);
             draw_spfond(wndw, sprt, i);
+            draw_spbarre(wndw, sprt);
         }
         if (sprt->begin == 3)
             draw_spmenu(wndw, sprt);
         if(sprt->begin == 1)
             draw_spwelcome(wndw, sprt);
-        is_touched_button(wndw, sprt);
+        is_touched_button(wndw, sprt, c);
     }
+    return 0;
 }
