@@ -25,11 +25,14 @@ void alloc_3d(int **map)
 void init_maps(maps *m)
 {
     sfVector2f **od_map = malloc(sizeof(sfVector2f *) * (MAP_Y + 1));
+    sfVector2f **w_map = malloc(sizeof(sfVector2f *) * (MAP_Y) + 1);
     int **three_d = malloc(sizeof(int **) * (MAP_Y + 1));
     alloc_3d(three_d);
     alloc_map(od_map);
+    alloc_map(w_map);
     m->td_map = three_d;
     m->map = od_map;
+    m->water_map = w_map;
     m->al = 0;
     m->be = 0;
     m->zoom = 50;

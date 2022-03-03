@@ -33,8 +33,8 @@
     //#define width 1920
     #define WIDTH 1920
     #define HEIGHT 1080
-    #define MAP_X 100
-    #define MAP_Y 100
+    #define MAP_X 50
+    #define MAP_Y 50
 
 typedef struct {
     float x;
@@ -46,6 +46,7 @@ typedef struct {
 typedef struct {
     sfVector2f **map;
     int **td_map;
+    sfVector2f **water_map;
     float al;
     float be;
     int zoom;
