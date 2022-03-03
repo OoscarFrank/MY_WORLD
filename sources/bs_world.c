@@ -29,15 +29,15 @@ void project_iso_point(int x, int y, int z, maps *m)
     float tmp_y = 0;
     float tmp_z = z;
     float back_x = 0;
-    x -= MAP_X / 2;
-    y -= MAP_Y / 2;
+    x -= m->map_x / 2;
+    y -= m->map_y / 2;
     tmp_x = x * cos(angle) - y * sin(angle);
     tmp_y = y * cos(angle) + x * sin(angle);
     back_x = tmp_x;
     tmp_x = back_x * cos(ang_h) - z * sin(ang_h);
     tmp_z = z * cos(ang_h) + back_x * sin(ang_h);
-    x += MAP_X / 2;
-    y += MAP_Y / 2;
+    x += m->map_x / 2;
+    y += m->map_y / 2;
     m->map[y][x].y = sin(angle_b) * (tmp_y + sin(angle_b) * (tmp_x - tmp_z));
     m->map[y][x].x = cos(angle_a) * (tmp_x - cos(angle_a) * tmp_y);
     m->water_map[y][x].y = sin(angle_b) * (tmp_y + sin(angle_b) * (tmp_x + 0));
@@ -47,8 +47,8 @@ void project_iso_point(int x, int y, int z, maps *m)
 
 void create_2d_map(maps *m)
 {
-    for (int i = 0; i < MAP_Y; ++i)
-        for (int j = 0; j < MAP_X; ++j)
+    for (int i = 0; i < m->map_y; ++i)
+        for (int j = 0; j < m->map_x; ++j)
             project_iso_point(j, i, m->td_map[i][j], m);
 }
 

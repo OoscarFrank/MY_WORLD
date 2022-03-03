@@ -29,12 +29,8 @@
     #include <sys/types.h>
     #include <sys/stat.h>
     #include <fcntl.h>
-    //#define height 1080
-    //#define width 1920
     #define WIDTH 1920
     #define HEIGHT 1080
-    #define MAP_X 50
-    #define MAP_Y 50
 
 typedef struct {
     float x;
@@ -52,6 +48,8 @@ typedef struct {
     int zoom;
     int decal_x;
     int decal_y;
+    int map_x;
+    int map_y;
 }maps;
 
 typedef struct {
@@ -63,6 +61,7 @@ typedef struct {
     int style;
     sfSprite *nw;
     int is_button;
+    int ctrl_pressed;
 }cursor;
 
 typedef struct {

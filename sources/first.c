@@ -7,20 +7,20 @@
 
 #include "../includes/map.h"
 
-void mouse_event(sfEvent event, sfRenderWindow *window, maps *m, cursor *c)
+void mouse_event(sfEvent event, cursor *c, maps *m)
 {
     if (event.type == sfEvtMouseWheelScrolled) {
         if (event.mouseWheelScroll.delta == 1)
-            ++c->radius;
+            !c->ctrl_pressed ? ++c->radius : ++m->zoom;
         else
-            --c->radius;
+            !c->ctrl_pressed ? (c->radius > 10 ? --c->radius : (c->radius = c->radius)) : (m->zoom > 10 ? --m->zoom : (m->zoom = m->zoom));
     }
 }
 
 void reset_map(maps *m)
 {
-    for (int y = 0; y < MAP_Y; ++y)
-        for (int x = 0; x < MAP_X; ++x)
+    for (int y = 0; y < m->map_y; ++y)
+        for (int x = 0; x < m->map_x; ++x)
             m->td_map[y][x] = 0;
 }
 
@@ -68,12 +68,20 @@ void move_event(sfEvent event, window *wndw, maps *m, options *sprt)
         sprt->begin = 0;
     if (sfKeyM == event.key.code && sprt->begin == 0)
             sprt->begin = 3;
+    if (event.key.code == sfKeyT)
+        ++m->map_y;
+    if (event.key.code == sfKeyG)
+        --m->map_y;
+    if (event.key.code == sfKeyF)
+        ++m->map_x;
+    if (event.key.code == sfKeyH)
+        --m->map_x;
 }
 
 void incidence(maps *m, int y, int x, mouse_c p)
 {
     int tmp = 0;
-    if (y + 1 < MAP_Y && x + 1 < MAP_X && x > 0 && y > 0) {
+    if (y + 1 < m->map_y && x + 1 < m->map_x && x > 0 && y > 0) {
         tmp = m->td_map[y][x] - 8;
         if (m->td_map[y + 1][x] < tmp) {
             m->td_map[y + 1][x] += p.delta;
@@ -105,8 +113,8 @@ void check_mouse_pos(maps *m, int y, int x, mouse_c p)
 
 void go_in_array(maps *m, mouse_c p)
 {
-    for (int y = 0; y < MAP_Y - 2; ++y)
-        for (int x = 0; x < MAP_X - 2; ++x)
+    for (int y = 0; y < m->map_y - 2; ++y)
+        for (int x = 0; x < m->map_x - 2; ++x)
             check_mouse_pos(m, y, x, p);
 }
 
@@ -124,7 +132,6 @@ void button_mouse(sfRenderWindow *window, maps *m, cursor *c)
 void launch_event(maps *m, cursor *c, window *wndw, options *sprt)
 {
     sfEvent event;
-
     while (sfRenderWindow_pollEvent(wndw->window, &event)) {
         if (event.type == sfEvtMouseButtonReleased)
             catch_button(wndw, sprt, event, c, m);
@@ -132,9 +139,15 @@ void launch_event(maps *m, cursor *c, window *wndw, options *sprt)
             click_button(wndw, sprt, event);
         if (event.type == sfEvtClosed)
             sfRenderWindow_close(wndw->window);
-        if (event.type == sfEvtKeyPressed)
-        move_event(event, wndw, m, sprt);
-        mouse_event(event, wndw->window, m, c);
+        if (event.type == sfEvtKeyPressed) {
+            move_event(event, wndw, m, sprt);
+            if (event.key.code == sfKeyLControl)
+                c->ctrl_pressed = 1;
+        }
+        if (event.type == sfEvtKeyReleased)
+            if (event.key.code == sfKeyLControl)
+                c->ctrl_pressed = 0;
+        mouse_event(event, c, m);
         button_mouse(wndw->window, m, c);
     }
 }
