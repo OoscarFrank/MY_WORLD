@@ -38,44 +38,26 @@ void key_d(maps *m)
 
 void move_event(sfEvent event, window *wndw, maps *m, options *sprt)
 {
-    if (event.key.code == sfKeyEscape)
-        sfRenderWindow_close(wndw->window);
-    if (event.key.code == sfKeyZ)
-        ++m->be;
-    if (event.key.code == sfKeyS)
-        --m->be;
-    if (event.key.code == sfKeyD)
-        key_d(m);
-    if (event.key.code == sfKeyA)
-        ++m->zoom;
-    if (event.key.code == sfKeyE)
-        --m->zoom;
-    if (event.key.code == sfKeyQ)
-        key_q(m);
-    if (event.key.code == sfKeyLeft)
-        m->decal_x -= 20;
-    if (event.key.code == sfKeyRight)
-        m->decal_x += 20;
-    if (event.key.code == sfKeyDown)
-        m->decal_y += 20;
-    if (event.key.code == sfKeyUp)
-            m->decal_y -= 20;
-    if (event.key.code == sfKeySpace)
-        reset_map(m);
-    if (event.key.code == sfKeyL)
-        sprt->begin = 0;
-    if (sfKeyR == event.key.code && sprt->begin == 3)
-        sprt->begin = 0;
-    if (sfKeyM == event.key.code && sprt->begin == 0)
-            sprt->begin = 3;
-    if (event.key.code == sfKeyT)
-        ++m->map_y;
-    if (event.key.code == sfKeyG)
-        --m->map_y;
-    if (event.key.code == sfKeyF)
-        ++m->map_x;
-    if (event.key.code == sfKeyH)
-        --m->map_x;
+    int tmp = 0;
+    (event.key.code == sfKeyEscape) ? sfRenderWindow_close(wndw->window) : ++tmp;
+    (event.key.code == sfKeyZ) ? ++m->be : ++tmp;
+    (event.key.code == sfKeyS) ? --m->be : ++tmp;
+    (event.key.code == sfKeyD) ? key_d(m) : ++tmp;
+    (event.key.code == sfKeyA) ? ++m->zoom : ++tmp;
+    (event.key.code == sfKeyE) ? --m->zoom : ++tmp;
+    (event.key.code == sfKeyQ) ? key_q(m) : ++tmp;
+    (event.key.code == sfKeyLeft) ? m->decal_x -= 20 : ++tmp;
+    (event.key.code == sfKeyRight) ? m->decal_x += 20 : ++tmp;
+    (event.key.code == sfKeyDown) ? m->decal_y += 20 : ++tmp;
+    (event.key.code == sfKeyUp) ? m->decal_y -= 20 : ++tmp;
+    (event.key.code == sfKeySpace) ? reset_map(m) : ++tmp;
+    (event.key.code == sfKeyL) ? sprt->begin = 0 : ++tmp;
+    (sfKeyR == event.key.code && sprt->begin == 3) ? sprt->begin = 0 : ++tmp;
+    (sfKeyM == event.key.code && sprt->begin == 0) ? sprt->begin = 3 : ++tmp;
+    (event.key.code == sfKeyT) ? ++m->map_y : ++tmp;
+    (event.key.code == sfKeyG) ? --m->map_y : ++tmp;
+    (event.key.code == sfKeyF) ? ++m->map_x : ++tmp;
+    (event.key.code == sfKeyH) ? --m->map_x : ++tmp;
 }
 
 void incidence(maps *m, int y, int x, mouse_c p)
