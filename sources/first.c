@@ -13,7 +13,8 @@ void mouse_event(sfEvent event, cursor *c, maps *m)
         if (event.mouseWheelScroll.delta == 1)
             !c->ctrl_pressed ? ++c->radius : ++m->zoom;
         else
-            !c->ctrl_pressed ? (c->radius > 10 ? --c->radius : (c->radius = c->radius)) : (m->zoom > 10 ? --m->zoom : (m->zoom = m->zoom));
+            !c->ctrl_pressed ? (c->radius > 10 ? --c->radius : (c->radius = c->radius))
+            : (m->zoom > 10 ? --m->zoom : (m->zoom = m->zoom));
     }
 }
 
@@ -103,9 +104,9 @@ void go_in_array(maps *m, mouse_c p)
 void button_mouse(sfRenderWindow *window, maps *m, cursor *c)
 {
     sfVector2i pos = sfMouse_getPosition(NULL);
-    if (sfMouse_isButtonPressed(sfMouseLeft) && !c->is_button)
+    if (sfMouse_isButtonPressed(sfMouseLeft))
         go_in_array(m, (mouse_c) {pos.x, pos.y, 1, c->radius / 2});
-    if (sfMouse_isButtonPressed(sfMouseRight) && !c->is_button)
+    if (sfMouse_isButtonPressed(sfMouseRight))
         go_in_array(m, (mouse_c) {pos.x, pos.y, - 1, c->radius / 2});
     if (sfMouse_isButtonPressed(sfMouseMiddle))
         c->style = c->style ? 0 : 1;
@@ -116,7 +117,7 @@ void launch_event(maps *m, cursor *c, window *wndw, options *sprt)
     sfEvent event;
     while (sfRenderWindow_pollEvent(wndw->window, &event)) {
         if (event.type == sfEvtMouseButtonReleased)
-            catch_button(wndw, sprt, event, c, m);
+            catch_button(wndw, sprt, event, (redus_map) {m, c});
         if (event.type == sfEvtMouseButtonPressed)
             click_button(wndw, sprt, event);
         if (event.type == sfEvtClosed)

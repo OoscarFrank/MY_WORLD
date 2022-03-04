@@ -7,39 +7,6 @@
 
 #include "../includes/map.h"
 
-void put_pixel(int x, int y, sfColor color, sfUint8 *framebuffer)
-{
-    *(sfColor * )(4 * (x * WIDTH + y) + framebuffer) = color;
-}
-
-void draw_circle(sfColor color, sfUint8 *frambuffer, int x, int y, int radius)
-{
-    for (int i = x - radius; i <= x + radius + 1; ++i)
-        for (int j = y - radius; j <= y + radius + 1; ++j) {
-            if ((sqrt((pow(i - x, 2) + pow(j - y, 2))) <= radius) && (j % 8 == 0) && (i % 8 == 0))
-                put_pixel(i, j, color, frambuffer);
-        }
-}
-
-int verif_circle(int i, int j, int x, int y)
-{
-    int res = (pow((i - x), 2) + pow((j - y), 2));
-    if (res < 0)
-        res = -res;
-    return sqrt(res);
-}
-               
-void draw_empty_circle(sfColor color, sfUint8 *frambuffer, int x, int y, int radius)
-{
-    for (int i = x - radius; i <= x + radius + 1; ++i)
-        for (int j = y - radius; j <= y + radius + 1; ++j) {
-            if ((verif_circle(i, j, x, y) == radius) ||
-                (verif_circle(i, j, x, y) == radius - 1) ||
-                (verif_circle(i, j, x, y) == radius + 1))
-                put_pixel(i, j, color, frambuffer);
-        }
-}
-
 void clean_for(cursor *c)
 {
     for (int i = 0; i < HEIGHT; ++i)
@@ -53,7 +20,8 @@ void move_other_cursor(cursor *c, sfRenderWindow *wnd, maps *m)
     int tmp_y = sfMouse_getPosition(NULL).y;
     clean_for(c);
     if (((tmp_x - c->radius) > 0) && ((tmp_y - c->radius) > 0))
-        draw_empty_circle(sfWhite, c->framebuffer, tmp_y, tmp_x, c->radius);
+        draw_empty_circle(sfWhite, c->framebuffer, (circle)
+        {tmp_y, tmp_x, c->radius});
     sfTexture_updateFromPixels(c->t, c->framebuffer, WIDTH, HEIGHT, 0, 0);
     sfRenderWindow_drawSprite(wnd, c->s, NULL);
 }
@@ -70,7 +38,7 @@ int move_cursor(cursor *c, sfRenderWindow *wnd, maps *m)
     y = sfMouse_getPosition(NULL).y;
     clean_for(c);
     if (((x - c->radius) > 0) && ((y - c->radius) > 0))
-        draw_circle(sfWhite, c->framebuffer, y, x, c->radius);
+        draw_circle(sfWhite, c->framebuffer, (circle) {y, x, c->radius});
     sfTexture_updateFromPixels(c->t, c->framebuffer, WIDTH, HEIGHT, 0, 0);
     sfRenderWindow_drawSprite(wnd, c->s, NULL);
     return 0;

@@ -14,9 +14,10 @@ int call_main_func(char *str)
     maps *m = malloc(sizeof(maps) + 1);
     cursor *c = malloc(sizeof(cursor) + 1);
     main_func(wndw, sprt, m, c);
+    return 0;
 }
 
 int main(int ac, char **av)
 {
-    call_main_func(av[1]);
+    return call_main_func(av[1]);
 }

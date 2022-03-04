@@ -25,7 +25,9 @@ SRC	=	sources/first.c				\
 		sources/cond_si_button.c	\
 		sources/func_button.c		\
 		sources/part_func_button.c	\
-		sources/detect_button.c
+		sources/detect_button.c		\
+		sources/circle.c	\
+		sources/sec_bs_world.c
 
 LIB = -l csfml-graphics -O2 -lm -l csfml-audio	\
 		-l csfml-system -l csfml-window -Wall

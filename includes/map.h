@@ -60,7 +60,6 @@ typedef struct {
     int radius;
     int style;
     sfSprite *nw;
-    int is_button;
     int ctrl_pressed;
 }cursor;
 
@@ -143,6 +142,24 @@ typedef struct button{
     int (*launch)(window *wndw, options *opt, cursor *c, maps *m);
 }button;
 
+typedef struct {
+    int x;
+    int y;
+    int radius;
+}circle;
+
+typedef struct {
+    float angle;
+    float ang_h;
+    float angle_b;
+    float angle_a;
+}angle_bs;
+
+typedef struct {
+    maps *m;
+    cursor *c;
+}redus_map;
+
 void key_q(maps *m);
 void key_d(maps *m);
 void reset_map(maps *m);
@@ -165,7 +182,7 @@ void draw_spcuts(window *wndw, options *sprt);
 void init_sprites(window *wndw, options *sprt);
 void linked_button(options *opt, window *wndw, cursor *c, maps *m);
 void is_touched_button(window *wndw, options *opt, cursor *c);
-void catch_button(window *wndw, options *opt, sfEvent event, cursor *c, maps *m);
+void catch_button(window *wndw, options *opt, sfEvent event, redus_map r_map);
 typedef int (*ptr_f)(window *wndw, options *opt, cursor *c, maps *m);
 void click_button(window *wndw, options *opt, sfEvent event);
 void factory_button(options *opt, ptr_f fc, sfIntRect old, sfVector2f pos);
@@ -212,24 +229,22 @@ int open_params(window *wndw, options *opt, cursor *c, maps *m);
 int open_zoom(window *wndw, options *opt, cursor *c, maps *m);
 int close_zoom(window *wndw, options *opt, cursor *c, maps *m);
 int open_shortcuts(window *wndw, options *opt, cursor *c, maps *m);
-
 int close_shortcuts(window *wndw, options *opt, cursor *c, maps *m);
 int zoom_in(window *wndw, options *opt, cursor *c, maps *m);
-
 void linked_button(options *opt, window *wndw, cursor *c, maps *m);
 void second_part_button(window *wndw, options *opt, cursor *c, maps *m);
 void third_part_button(window *wndw, options *opt, cursor *c, maps *m);
 void fourth_part_button(window *wndw, options *opt, cursor *c, maps *m);
 void fifth_part_button(window *wndw, options *opt, cursor *c, maps *m);
-
 void sixth_part_button(window *wndw, options *opt, cursor *c, maps *m);
 void seven_part_button(window *wndw, options *opt, cursor *c, maps *m);
 void eight_part_button(window *wndw, options *opt, cursor *c, maps *m);
-
-void catch_button(window *wndw, options *opt, sfEvent event, cursor *c,
-maps *m);
+sfColor biggest(int x, int y, maps *m);
 void click_button(window *wndw, options *opt, sfEvent event);
-
+void draw_water(int i, int j, maps *m, sfRenderWindow *wnd);
 void move_rect_pressed(options *opt, int i);
-
+void put_pixel(int x, int y, sfColor color, sfUint8 *framebuffer);
+void draw_circle(sfColor color, sfUint8 *frambuffer, circle crl);
+void put_pixel(int x, int y, sfColor color, sfUint8 *framebuffer);
+void draw_empty_circle(sfColor color, sfUint8 *frambuffer, circle crl);
 #endif

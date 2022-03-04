@@ -46,6 +46,5 @@ void init_cursor(cursor *c)
     c->s = sfSprite_create();
     c->radius = 100;
     c->style = 0;
-    c->is_button = 1;
     sfSprite_setTexture(c->s, c->t, sfTrue);
 }

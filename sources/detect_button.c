@@ -7,7 +7,7 @@
 
 #include "../includes/map.h"
 
-void catch_button(window *wndw, options *opt, sfEvent event, cursor *c, maps *m)
+void catch_button(window *wndw, options *opt, sfEvent event, redus_map r_map)
 {
     for (int i = 0; i < opt->len_button; ++i) {
         if (opt->ar_btn[i].params == 1 && ((event.mouseButton.x >= opt->ar_btn[i].pos.x) &&
@@ -16,7 +16,7 @@ void catch_button(window *wndw, options *opt, sfEvent event, cursor *c, maps *m)
         opt->ar_btn[i].pos.y) && (event.mouseButton.y <=
         (opt->ar_btn[i].pos.y + opt->ar_btn[i].place.height) &&
         opt->ar_btn[i].screen == opt->begin)))
-            (*(opt->ar_btn[i].launch))(wndw, opt, c, m);
+            (*(opt->ar_btn[i].launch))(wndw, opt, r_map.c, r_map.m);
         opt->ar_btn[i].event = 0;
     }
 }
