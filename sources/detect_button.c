@@ -10,7 +10,8 @@
 void catch_button(window *wndw, options *opt, sfEvent event, redus_map r_map)
 {
     for (int i = 0; i < opt->len_button; ++i) {
-        if (opt->ar_btn[i].params == 1 && ((event.mouseButton.x >= opt->ar_btn[i].pos.x) &&
+        if (opt->ar_btn[i].params == 1 &&
+        ((event.mouseButton.x >= opt->ar_btn[i].pos.x) &&
         (event.mouseButton.x <= (opt->ar_btn[i].pos.x +
         opt->ar_btn[i].place.width))) && ((event.mouseButton.y >=
         opt->ar_btn[i].pos.y) && (event.mouseButton.y <=

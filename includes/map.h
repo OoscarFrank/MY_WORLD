@@ -162,6 +162,10 @@ typedef struct {
     float ang_h;
     float angle_b;
     float angle_a;
+    float tmp_x;
+    float tmp_y;
+    float tmp_z;
+    float back_x;
 }angle_bs;
 
 typedef struct {

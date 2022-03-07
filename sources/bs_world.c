@@ -22,27 +22,25 @@ void decal_map(maps *m, int x, int y)
 void project_iso_point(int x, int y, int z, maps *m)
 {
     angle_bs aglb = {m->al * (M_PI / 180), m->be * (M_PI / 180)
-                     ,35 * (M_PI / 180), 45 * (M_PI / 180)};
-    float tmp_x = 0;
-    float tmp_y = 0;
-    float tmp_z = z;
-    float back_x = 0;
+                     ,35 * (M_PI / 180), 45 * (M_PI / 180), 0, 0, 0, 0};
     x -= m->map_x / 2;
     y -= m->map_y / 2;
-    tmp_x = x * cos( aglb.angle) - y * sin(aglb.angle);
-    tmp_y = y * cos(aglb.angle) + x * sin(aglb.angle);
-    back_x = tmp_x;
-    tmp_x = back_x * cos(aglb.ang_h) - z * sin(aglb.ang_h);
-    tmp_z = z * cos(aglb.ang_h) + back_x * sin(aglb.ang_h);
+    aglb.tmp_x = x * cos( aglb.angle) - y * sin(aglb.angle);
+    aglb.tmp_y = y * cos(aglb.angle) + x * sin(aglb.angle);
+    aglb.back_x = aglb.tmp_x;
+    aglb.tmp_x = aglb.back_x * cos(aglb.ang_h) - z * sin(aglb.ang_h);
+    aglb.tmp_z = z * cos(aglb.ang_h) + aglb.back_x * sin(aglb.ang_h);
     x += m->map_x / 2;
     y += m->map_y / 2;
     m->map[y][x].y = sin(aglb.angle_b) *
-            (tmp_y + sin(aglb.angle_b) * (tmp_x - tmp_z));
-    m->map[y][x].x = cos(aglb.angle_a) * (tmp_x - cos(aglb.angle_a) * tmp_y);
+            (aglb.tmp_y + sin(aglb.angle_b) * (aglb.tmp_x - aglb.tmp_z));
+    m->map[y][x].x = cos(aglb.angle_a) *
+            (aglb.tmp_x - cos(aglb.angle_a) * aglb.tmp_y);
     m->water_map[y][x].y = sin(aglb.angle_b) *
-            (tmp_y + sin(aglb.angle_b) * (tmp_x - back_x * sin(aglb.ang_h)));
+            (aglb.tmp_y + sin(aglb.angle_b) *
+            (aglb.tmp_x - aglb.back_x * sin(aglb.ang_h)));
     m->water_map[y][x].x = cos(aglb.angle_a) *
-            (tmp_x - cos(aglb.angle_a) * tmp_y);
+            (aglb.tmp_x - cos(aglb.angle_a) * aglb.tmp_y);
     decal_map(m, x, y);
 }
 

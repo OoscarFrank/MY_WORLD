@@ -33,8 +33,10 @@ void incidence(maps *m, int y, int x, mouse_c p)
 
 void check_mouse_pos(maps *m, int y, int x, mouse_c p)
 {
-    if ((((m->map[y][x].y <= (p.y + p.radius)) && (m->map[y + 1][x].y >= (p.y - p.radius)))) &&
-        ((m->map[y][x].x <= (p.x + p.radius)) && (m->map[y][x + 1].x >= (p.x - p.radius)))) {
+    if ((((m->map[y - 1][x].y <= (p.y + p.radius)) &&
+    (m->map[y + 1][x].y >= (p.y - p.radius)))) &&
+        ((m->map[y][x - 1].x <= (p.x + p.radius)) &&
+        (m->map[y][x + 1].x >= (p.x - p.radius)))) {
         m->td_map[y][x] += p.delta;
         incidence(m, y, x, p);
     }

@@ -43,29 +43,30 @@ void move_event(sfEvent event, window *wndw, maps *m, options *sprt)
     (event.key.code == sfKeyH) ? --m->map_x : ++tmp;
 }
 
-void normal_event(maps *m, cursor *c, window *wndw, options *sprt, sfEvent event)
+void normal_event(redus_map re, window *wndw, options *sprt, sfEvent event)
 {
     if (event.type == sfEvtMouseButtonReleased)
-        catch_button(wndw, sprt, event, (redus_map) {m, c});
+        catch_button(wndw, sprt, event, re);
     if (event.type == sfEvtMouseButtonPressed)
         click_button(wndw, sprt, event);
     if (event.type == sfEvtClosed)
         sfRenderWindow_close(wndw->window);
     if (event.type == sfEvtKeyPressed) {
-        move_event(event, wndw, m, sprt);
+        move_event(event, wndw, re.m, sprt);
         if (event.key.code == sfKeyLControl || event.key.code == sfKeyRControl)
             sprt->ctrl_pressed = 1;
     }
     if (event.type == sfEvtKeyReleased)
         if (event.key.code == sfKeyLControl || event.key.code == sfKeyRControl)
             sprt->ctrl_pressed = 0;
-    mouse_event(event, c, m, sprt);
-    button_mouse(wndw->window, m, c);
+    mouse_event(event, re.c, re.m, sprt);
+    button_mouse(wndw->window, re.m, re.c);
 }
 
 void launch_event(maps *m, cursor *c, window *wndw, options *sprt)
 {
     sfEvent event;
     while (sfRenderWindow_pollEvent(wndw->window, &event))
-        m->sv.is_save ? save(m, event) : normal_event(m, c, wndw, sprt, event);
+        m->sv.is_save ? save(m, event) :
+        normal_event((redus_map) {m, c}, wndw, sprt, event);
 }

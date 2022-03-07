@@ -19,14 +19,14 @@ int init_all(window *wndw, options *sprt, maps *m, cursor *c)
     return 0;
 }
 
-int loop_instruction(window *wndw, options *sprt, maps *m, cursor *c, int i)
+int loop_instruction(window *wndw, options *sprt, redus_map re, int i)
 {
     if (sprt->begin == 0 && sprt->params == 1 || sprt->params == 2 ||
     sprt->params == 4 || sprt->params == 5 || sprt->params == 6)
         draw_spfond(wndw, sprt, i);
     if (sprt->begin == 0) {
-        my_world(wndw->window, m, c);
-        my_world(wndw->window, m, c);
+        my_world(wndw->window, re.m, re.c);
+        my_world(wndw->window, re.m, re.c);
         draw_spfond(wndw, sprt, i);
         draw_spbarre(wndw, sprt);
     }
@@ -54,7 +54,7 @@ int main_func(window *wndw, options *sprt, maps *m, cursor *c)
             open_p(wndw, sprt);
         if (sprt->mv == -1 && i > - 5)
             --i;
-        loop_instruction(wndw, sprt, m, c, i);
+        loop_instruction(wndw, sprt, (redus_map) {m, c}, i);
         is_touched_button(wndw, sprt, c);
     }
     return 0;
