@@ -40,6 +40,13 @@ typedef struct {
 }mouse_c;
 
 typedef struct {
+    char *name_file;
+    int cp;
+    int is_save;
+    int old_ch;
+}save_map;
+
+typedef struct {
     sfVector2f **map;
     int **td_map;
     sfVector2f **water_map;
@@ -50,6 +57,7 @@ typedef struct {
     int decal_y;
     int map_x;
     int map_y;
+    save_map sv;
 }maps;
 
 typedef struct {
@@ -85,6 +93,7 @@ typedef struct {
     int params;
     int begin;
     int len_button;
+    int ctrl_pressed;
     sfTexture *welcome;
     sfSprite *spwelcome;
     sfTexture *fond;
@@ -159,6 +168,11 @@ typedef struct {
     maps *m;
     cursor *c;
 }redus_map;
+
+typedef struct {
+    int x;
+    int y;
+}pos;
 
 void key_q(maps *m);
 void key_d(maps *m);

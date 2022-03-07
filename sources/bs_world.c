@@ -36,10 +36,13 @@ void project_iso_point(int x, int y, int z, maps *m)
     tmp_z = z * cos(aglb.ang_h) + back_x * sin(aglb.ang_h);
     x += m->map_x / 2;
     y += m->map_y / 2;
-    m->map[y][x].y = sin(aglb.angle_b) * (tmp_y + sin(aglb.angle_b) * (tmp_x - tmp_z));
+    m->map[y][x].y = sin(aglb.angle_b) *
+            (tmp_y + sin(aglb.angle_b) * (tmp_x - tmp_z));
     m->map[y][x].x = cos(aglb.angle_a) * (tmp_x - cos(aglb.angle_a) * tmp_y);
-    m->water_map[y][x].y = sin(aglb.angle_b) * (tmp_y + sin(aglb.angle_b) * (tmp_x - back_x * sin(aglb.ang_h)));
-    m->water_map[y][x].x = cos(aglb.angle_a) * (tmp_x - cos(aglb.angle_a) * tmp_y);
+    m->water_map[y][x].y = sin(aglb.angle_b) *
+            (tmp_y + sin(aglb.angle_b) * (tmp_x - back_x * sin(aglb.ang_h)));
+    m->water_map[y][x].x = cos(aglb.angle_a) *
+            (tmp_x - cos(aglb.angle_a) * tmp_y);
     decal_map(m, x, y);
 }
 

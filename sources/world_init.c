@@ -9,8 +9,11 @@
 
 void alloc_map(sfVector2f **map, maps *m)
 {
-    for (int i = 0; i < m->map_y * 2; ++i)
-        map[i] = malloc(sizeof(sfVector2f) * (m->map_x * 2 + 1));
+    for (int i = 0; i < m->map_y * 2; ++i) {
+        map[i] = malloc(sizeof(sfVector2f * ) * (m->map_x * 2 + 1) + 1);
+        for (int j = 0; j < m->map_x * 2; ++j)
+            map[i][j] = (sfVector2f) {0, 0};
+    }
 }
 
 void alloc_3d(int **map, maps *m)
@@ -37,6 +40,10 @@ void init_maps(maps *m)
     m->zoom = 50;
     m->decal_x = m->map_x / 50 + 700;
     m->decal_y = m->map_y / 50 + 700;
+    m->sv.cp = 0;
+    m->sv.is_save = 0;
+    m->sv.name_file = malloc(sizeof(char) * 1000);
+    m->sv.old_ch = -1;
 }
 
 void init_cursor(cursor *c)

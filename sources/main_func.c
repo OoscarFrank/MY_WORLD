@@ -16,6 +16,7 @@ int init_all(window *wndw, options *sprt, maps *m, cursor *c)
     params_window(wndw, sprt);
     init_sprites(wndw, sprt);
     linked_button(sprt, wndw, c, m);
+    return 0;
 }
 
 int loop_instruction(window *wndw, options *sprt, maps *m, cursor *c, int i)
@@ -33,6 +34,7 @@ int loop_instruction(window *wndw, options *sprt, maps *m, cursor *c, int i)
         draw_spmenu(wndw, sprt);
     if(sprt->begin == 1)
         draw_spwelcome(wndw, sprt);
+    return 0;
 }
 
 int main_func(window *wndw, options *sprt, maps *m, cursor *c)
