@@ -26,8 +26,12 @@ SRC	=	sources/first.c				\
 		sources/func_button.c		\
 		sources/part_func_button.c	\
 		sources/detect_button.c		\
-		sources/circle.c	\
-		sources/sec_bs_world.c
+		sources/circle.c			\
+		sources/sec_bs_world.c		\
+		sources/color.c				\
+		sources/save_map.c			\
+		sources/mouse_up.c			\
+		sources/event_key.c
 
 LIB = -l csfml-graphics -O2 -lm -l csfml-audio	\
 		-l csfml-system -l csfml-window -Wall

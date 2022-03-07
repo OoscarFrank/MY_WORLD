@@ -174,6 +174,9 @@ typedef struct {
     int y;
 }pos;
 
+void button_mouse(sfRenderWindow *window, maps *m, cursor *c);
+void start_save(maps *m);
+void save(maps *m, sfEvent event);
 void key_q(maps *m);
 void key_d(maps *m);
 void reset_map(maps *m);
@@ -213,7 +216,7 @@ void draw_one_one_zero(maps *m, sfRenderWindow *wnd);
 void launch_event(maps *m, cursor *c, window *wndw, options *sprt);
 void my_world(sfRenderWindow *wnd, maps *m, cursor *c);
 int open_p(window *wndw, options *opt);
-
+void mouse_event(sfEvent event, cursor *c, maps *m, options *sprt);
 int quit_button(window *wndw, options *opt, cursor *c, maps *m);
 int continue_button(window *wndw, options *opt, cursor *c, maps *m);
 int open_menu(window *wndw, options *opt, cursor *c, maps *m);
