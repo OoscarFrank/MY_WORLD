@@ -7,16 +7,12 @@
 
 #include "../includes/map.h"
 
-void key_q(maps *m)
+void more_move_event(sfEvent event, window *wndw, maps *m, options *sprt)
 {
-    if (m->al >= 1)
-        m->al -= 2;
-}
-
-void key_d(maps *m)
-{
-    if ((m->al < 145) && (m->al >= 0))
-        m->al += 2;
+    (event.key.code == sfKeyT) ? ++m->map_y : 0;
+    (event.key.code == sfKeyG) ? --m->map_y : 0;
+    (event.key.code == sfKeyF) ? ++m->map_x : 0;
+    (event.key.code == sfKeyH) ? --m->map_x : 0;
 }
 
 void move_event(sfEvent event, window *wndw, maps *m, options *sprt)
@@ -39,10 +35,7 @@ void move_event(sfEvent event, window *wndw, maps *m, options *sprt)
     (event.key.code == sfKeyL) ? sprt->begin = 0 : ++tmp;
     (sfKeyR == event.key.code && sprt->begin == 3) ? sprt->begin = 0 : ++tmp;
     (sfKeyM == event.key.code && sprt->begin == 0) ? sprt->begin = 3 : ++tmp;
-    (event.key.code == sfKeyT) ? ++m->map_y : ++tmp;
-    (event.key.code == sfKeyG) ? --m->map_y : ++tmp;
-    (event.key.code == sfKeyF) ? ++m->map_x : ++tmp;
-    (event.key.code == sfKeyH) ? --m->map_x : ++tmp;
+    more_move_event(event, wndw, m, sprt);
 }
 
 void normal_event(redus_map re, window *wndw, options *sprt, sfEvent event)
