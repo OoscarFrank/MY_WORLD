@@ -238,13 +238,13 @@ int reset_button(window *wndw, options *opt, cursor *c, maps *m);
 int go_left(window *wndw, options *opt, cursor *c, maps *m);
 int go_right(window *wndw, options *opt, cursor *c, maps *m);
 int go_down(window *wndw, options *opt, cursor *c, maps *m);
-
+void load_map(maps *m, sfEvent event);
 int close_params(window *wndw, options *opt, cursor *c, maps *m);
 int open_view(window *wndw, options *opt, cursor *c, maps *m);
 int close_view(window *wndw, options *opt, cursor *c, maps *m);
 int open_turn(window *wndw, options *opt, cursor *c, maps *m);
 int close_turn(window *wndw, options *opt, cursor *c, maps *m);
-
+void start_load(maps *m);
 int open_p(window *wndw, options *opt);
 int open_params(window *wndw, options *opt, cursor *c, maps *m);
 int open_zoom(window *wndw, options *opt, cursor *c, maps *m);
