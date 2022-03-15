@@ -19,6 +19,12 @@ int open_p(window *wndw, options *opt)
     opt->ar_btn[SHORTCUTS].params = 1;
     opt->ar_btn[OPEN_PARAMS].params = 0;
     opt->ar_btn[LOAD_MAP].params = 1;
+    opt->ar_btn[PLUS_X].params = 1;
+    opt->ar_btn[MOINS_X].params = 1;
+    opt->ar_btn[PLUS_Y].params = 1;
+    opt->ar_btn[MOINS_Y].params = 1;
+    opt->ar_btn[DEF_X].params = 1;
+    opt->ar_btn[DEF_Y].params = 1;
     return 0;
 }
 

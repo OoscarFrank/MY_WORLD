@@ -9,10 +9,34 @@
 
 void nine_part_button(window *wndw, options *opt, cursor *c, maps *m)
 {
-    factory_button(opt, &start_load, (sfIntRect){3608, 0, 200, 40},
+    factory_button(opt, &go_home, (sfIntRect){3608, 0, 200, 40},
         (sfVector2f){140, 250});
     opt->ar_btn[LOAD_MAP].params = 0;
     opt->ar_btn[LOAD_MAP].screen = 0;
+    factory_button(opt, &go_home, (sfIntRect){3808, 0, 40, 40},
+        (sfVector2f){210, 550});
+    opt->ar_btn[PLUS_X].params = 0;
+    opt->ar_btn[PLUS_X].screen = 0;
+    factory_button(opt, &go_home, (sfIntRect){3848, 0, 40, 40},
+        (sfVector2f){270, 550});
+    opt->ar_btn[MOINS_X].params = 0;
+    opt->ar_btn[MOINS_X].screen = 0;
+    factory_button(opt, &go_home, (sfIntRect){3808, 0, 40, 40},
+        (sfVector2f){210, 600});
+    opt->ar_btn[PLUS_Y].params = 0;
+    opt->ar_btn[PLUS_Y].screen = 0;
+    factory_button(opt, &go_home, (sfIntRect){3848, 0, 40, 40},
+        (sfVector2f){270, 600});
+    opt->ar_btn[MOINS_Y].params = 0;
+    opt->ar_btn[MOINS_Y].screen = 0;
+    factory_button(opt, &rzero, (sfIntRect){3888, 0, 40, 40},
+        (sfVector2f){150, 550});
+    opt->ar_btn[DEF_X].params = 0;
+    opt->ar_btn[DEF_X].screen = 0;
+    factory_button(opt, &rzero, (sfIntRect){3928, 0, 40, 40},
+        (sfVector2f){150, 600});
+    opt->ar_btn[DEF_Y].params = 0;
+    opt->ar_btn[DEF_Y].screen = 0;
 }
 
 void eight_part_button(window *wndw, options *opt, cursor *c, maps *m)

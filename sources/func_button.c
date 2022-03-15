@@ -55,7 +55,7 @@ void third_part_button(window *wndw, options *opt, cursor *c, maps *m)
         (sfVector2f){201, 62});
     opt->ar_btn[OPEN_PARAMS].params = 1;
     opt->ar_btn[OPEN_PARAMS].screen = 0;
-    factory_button(opt, &start_save, (sfIntRect) {1501, 0, 200, 40},
+    factory_button(opt, &go_home, (sfIntRect) {1501, 0, 200, 40},
                    (sfVector2f) {140, 190});
     opt->ar_btn[SAVE_FILE].params = 0;
     opt->ar_btn[SAVE_FILE].screen = 0;
@@ -94,7 +94,7 @@ void second_part_button(window *wndw, options *opt, cursor *c, maps *m)
 void linked_button(options *opt, window *wndw, cursor *c, maps *m)
 {
     opt->t = sfTexture_createFromFile("ressources/buttons.png", NULL);
-    opt->ar_btn = malloc(sizeof(button) * 31);
+    opt->ar_btn = malloc(sizeof(button) * 37);
     opt->len_button = 0;
     factory_button(opt, &continue_button, (sfIntRect){0, 0, 200, 74},
                    (sfVector2f){865, 700});

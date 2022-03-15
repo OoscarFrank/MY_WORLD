@@ -140,6 +140,12 @@ typedef enum button_name {
     SHORTCUTS,
     CLOSE_SHORTCUTS,
     LOAD_MAP,
+    PLUS_X,
+    MOINS_X,
+    PLUS_Y,
+    MOINS_Y,
+    DEF_X,
+    DEF_Y,
 }buttton_name;
 
 typedef struct button{
@@ -267,4 +273,6 @@ void put_pixel(int x, int y, sfColor color, sfUint8 *framebuffer);
 void draw_circle(sfColor color, sfUint8 *frambuffer, circle crl);
 void put_pixel(int x, int y, sfColor color, sfUint8 *framebuffer);
 void draw_empty_circle(sfColor color, sfUint8 *frambuffer, circle crl);
+int rzero(window *wndw, options *opt, cursor *c, maps *m);
+
 #endif
