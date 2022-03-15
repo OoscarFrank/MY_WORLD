@@ -62,6 +62,7 @@ void launch_event(maps *m, cursor *c, window *wndw, options *sprt)
 {
     sfEvent event;
     while (sfRenderWindow_pollEvent(wndw->window, &event))
-        m->sv.is_save ? (m->sv.is_save == 1) ? save(m, event) : load_map(m, event) :
+        m->sv.is_save ? (m->sv.is_save == 1) ? save(m, event, sprt) :
+        load_map(m, event, sprt) :
         normal_event((redus_map) {m, c}, wndw, sprt, event);
 }

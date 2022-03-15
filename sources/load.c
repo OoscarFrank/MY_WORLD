@@ -59,7 +59,7 @@ int chg_map(maps *m)
     return 0;
 }
 
-void load_map(maps *m, sfEvent event)
+void load_map(maps *m, sfEvent event, options *sprt)
 {
     if (event.type == sfEvtKeyPressed) {
         if (event.key.code == sfKeyEnter) {
@@ -73,6 +73,9 @@ void load_map(maps *m, sfEvent event)
         }
         event.key.code == sfKeyReturn && m->sv.cp > 0 ? --m->sv.cp : 0;
     }
+    if (event.type == sfEvtKeyReleased)
+        if (event.key.code == sfKeyLControl || event.key.code == sfKeyRControl)
+            sprt->ctrl_pressed = 0;
 }
 
 void start_load(maps *m)

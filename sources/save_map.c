@@ -55,7 +55,7 @@ void create_content_map(maps *m, char *name_file)
     fclose(file);
 }
 
-void save(maps *m, sfEvent event)
+void save(maps *m, sfEvent event, options *sprt)
 {
     if (event.type == sfEvtKeyPressed) {
         if (event.key.code == sfKeyEnter) {
@@ -67,8 +67,12 @@ void save(maps *m, sfEvent event)
             m->sv.name_file[m->sv.cp] = event.key.code + 97;
             ++m->sv.cp;
         }
+
         event.key.code == sfKeyReturn && m->sv.cp > 0 ? --m->sv.cp : 0;
     }
+    if (event.type == sfEvtKeyReleased)
+        if (event.key.code == sfKeyLControl || event.key.code == sfKeyRControl)
+            sprt->ctrl_pressed = 0;
 }
 
 void start_save(maps *m)

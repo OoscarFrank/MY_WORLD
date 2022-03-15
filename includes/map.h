@@ -44,6 +44,7 @@ typedef struct {
     int cp;
     int is_save;
     int old_ch;
+    sfText *text;
 }save_map;
 
 typedef struct {
@@ -68,7 +69,6 @@ typedef struct {
     int radius;
     int style;
     sfSprite *nw;
-    int ctrl_pressed;
 }cursor;
 
 typedef struct {
@@ -178,9 +178,10 @@ typedef struct {
     int y;
 }pos;
 
+void load_map(maps *m, sfEvent event, options *sprt);
+void save(maps *m, sfEvent event, options *sprt);
 void button_mouse(sfRenderWindow *window, maps *m, cursor *c);
 void start_save(maps *m);
-void save(maps *m, sfEvent event);
 void key_q(maps *m);
 void key_d(maps *m);
 void reset_map(maps *m);
@@ -226,19 +227,16 @@ int continue_button(window *wndw, options *opt, cursor *c, maps *m);
 int open_menu(window *wndw, options *opt, cursor *c, maps *m);
 int resume_game(window *wndw, options *opt, cursor *c, maps *m);
 int go_home(window *wndw, options *opt, cursor *c, maps *m);
-
 int go_up(window *wndw, options *opt, cursor *c, maps *m);
 int turn_left(window *wndw, options *opt, cursor *c, maps *m);
 int turn_right(window *wndw, options *opt, cursor *c, maps *m);
 int turn_high(window *wndw, options *opt, cursor *c, maps *m);
 int turn_low(window *wndw, options *opt, cursor *c, maps *m);
-
 int zoom_out(window *wndw, options *opt, cursor *c, maps *m);
 int reset_button(window *wndw, options *opt, cursor *c, maps *m);
 int go_left(window *wndw, options *opt, cursor *c, maps *m);
 int go_right(window *wndw, options *opt, cursor *c, maps *m);
 int go_down(window *wndw, options *opt, cursor *c, maps *m);
-void load_map(maps *m, sfEvent event);
 int close_params(window *wndw, options *opt, cursor *c, maps *m);
 int open_view(window *wndw, options *opt, cursor *c, maps *m);
 int close_view(window *wndw, options *opt, cursor *c, maps *m);

@@ -27,6 +27,7 @@ void alloc_3d(int **map, maps *m)
 
 void init_maps(maps *m)
 {
+    sfFont *ft = sfFont_createFromFile("ressources/ft.ttf");
     m->map_x = 50;
     m->map_y = 50;
     m->td_map = malloc(sizeof(int **) * (m->map_y * 2+ 1));
@@ -44,6 +45,8 @@ void init_maps(maps *m)
     m->sv.is_save = 0;
     m->sv.name_file = malloc(sizeof(char) * 1000);
     m->sv.old_ch = -1;
+    m->sv.text = sfText_create();
+    sfText_setFont(m->sv.text, ft);
 }
 
 void init_cursor(cursor *c)

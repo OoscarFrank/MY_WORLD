@@ -19,6 +19,26 @@ int init_all(window *wndw, options *sprt, maps *m, cursor *c)
     return 0;
 }
 
+void write_save(maps *m, window *wndw)
+{
+    char *tmp = malloc(sizeof(char) * 1000);
+    int cp = 0;
+    char *base = "Name of the file : ";
+    int i = 0;
+    sfVector2f place = {WIDTH / 2, HEIGHT / 2};
+
+    for (; base[cp] != '\0'; ++cp)
+        tmp[cp] = base[cp];
+
+    for (; i < m->sv.cp; ++i)
+        tmp[cp + i] = m->sv.name_file[i];
+    tmp[cp + i] = '\0';
+    sfText_setString(m->sv.text, tmp);
+    sfText_setPosition(m->sv.text, place);
+    sfRenderWindow_drawText(wndw->window, m->sv.text, NULL);
+    free(tmp);
+}
+
 int loop_instruction(window *wndw, options *sprt, redus_map re, int i)
 {
     if (sprt->begin == 0 && sprt->params == 1 || sprt->params == 2 ||
@@ -32,8 +52,10 @@ int loop_instruction(window *wndw, options *sprt, redus_map re, int i)
     }
     if (sprt->begin == 3)
         draw_spmenu(wndw, sprt);
-    if(sprt->begin == 1)
+    if (sprt->begin == 1)
         draw_spwelcome(wndw, sprt);
+    if (re.m->sv.is_save)
+        write_save(re.m, wndw);
     return 0;
 }
 
