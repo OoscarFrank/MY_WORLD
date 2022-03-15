@@ -18,6 +18,7 @@ int open_p(window *wndw, options *opt)
     opt->ar_btn[RESET_MAP].params = 1;
     opt->ar_btn[SHORTCUTS].params = 1;
     opt->ar_btn[OPEN_PARAMS].params = 0;
+    opt->ar_btn[LOAD_MAP].params = 1;
     return 0;
 }
 

@@ -18,7 +18,7 @@ void fifth_part_button(window *wndw, options *opt, cursor *c, maps *m)
     opt->ar_btn[CLOSE_VIEW].params = 0;
     opt->ar_btn[CLOSE_VIEW].screen = 0;
     factory_button(opt, &open_turn, (sfIntRect){2778, 0, 200, 40},
-        (sfVector2f){140, 360});
+        (sfVector2f){140, 370});
     opt->ar_btn[OPEN_TURN].params = 0;
     opt->ar_btn[OPEN_TURN].screen = 0;
     factory_button(opt, &turn_left, (sfIntRect){2261, 0, 60, 60},
@@ -31,7 +31,7 @@ void fifth_part_button(window *wndw, options *opt, cursor *c, maps *m)
 void fourth_part_button(window *wndw, options *opt, cursor *c, maps *m)
 {
     factory_button(opt, &open_view, (sfIntRect){2501, 0, 200, 40},
-        (sfVector2f){140, 300});
+        (sfVector2f){140, 310});
     opt->ar_btn[OPEN_CHG_VIEW].params = 0;
     opt->ar_btn[OPEN_CHG_VIEW].screen = 0;
     factory_button(opt, &go_left, (sfIntRect){2021, 0, 60, 60},
@@ -55,8 +55,8 @@ void third_part_button(window *wndw, options *opt, cursor *c, maps *m)
         (sfVector2f){201, 62});
     opt->ar_btn[OPEN_PARAMS].params = 1;
     opt->ar_btn[OPEN_PARAMS].screen = 0;
-    factory_button(opt, &go_home, (sfIntRect) {1501, 0, 200, 40},
-                   (sfVector2f) {140, 200});
+    factory_button(opt, &start_save, (sfIntRect) {1501, 0, 200, 40},
+                   (sfVector2f) {140, 190});
     opt->ar_btn[SAVE_FILE].params = 0;
     opt->ar_btn[SAVE_FILE].screen = 0;
     factory_button(opt, &quit_button, (sfIntRect) {1701, 0, 200, 40},
@@ -94,7 +94,7 @@ void second_part_button(window *wndw, options *opt, cursor *c, maps *m)
 void linked_button(options *opt, window *wndw, cursor *c, maps *m)
 {
     opt->t = sfTexture_createFromFile("ressources/buttons.png", NULL);
-    opt->ar_btn = malloc(sizeof(button) * 30);
+    opt->ar_btn = malloc(sizeof(button) * 31);
     opt->len_button = 0;
     factory_button(opt, &continue_button, (sfIntRect){0, 0, 200, 74},
                    (sfVector2f){865, 700});

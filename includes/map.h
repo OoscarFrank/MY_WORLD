@@ -139,6 +139,7 @@ typedef enum button_name {
     RESET_MAP,
     SHORTCUTS,
     CLOSE_SHORTCUTS,
+    LOAD_MAP,
 }buttton_name;
 
 typedef struct button{

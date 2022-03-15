@@ -18,6 +18,7 @@ int close_params(window *wndw, options *opt, cursor *c, maps *m)
     opt->ar_btn[RESET_MAP].params = 0;
     opt->ar_btn[SHORTCUTS].params = 0;
     opt->ar_btn[OPEN_PARAMS].params = 1;
+    opt->ar_btn[LOAD_MAP].params = 0;
     opt->mv = -1;
     return 0;
 }
