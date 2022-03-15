@@ -274,5 +274,6 @@ void draw_circle(sfColor color, sfUint8 *frambuffer, circle crl);
 void put_pixel(int x, int y, sfColor color, sfUint8 *framebuffer);
 void draw_empty_circle(sfColor color, sfUint8 *frambuffer, circle crl);
 int rzero(window *wndw, options *opt, cursor *c, maps *m);
+void ten_part_button(window *wndw, options *opt, cursor *c, maps *m);
 
 #endif
