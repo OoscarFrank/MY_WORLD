@@ -38,8 +38,8 @@ void init_maps(maps *m)
     alloc_map(m->water_map, m);
     m->al = 0;
     m->be = 0;
-    m->zoom = 50;
-    m->decal_x = m->map_x / 50 + 700;
+    m->zoom = 20;
+    m->decal_x = m->map_x * 25;
     m->decal_y = m->map_y / 50 + 700;
     m->sv.cp = 0;
     m->sv.is_save = 0;
