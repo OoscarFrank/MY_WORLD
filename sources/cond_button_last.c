@@ -18,7 +18,6 @@ int buttons_minus_y(window *wndw, options *opt, cursor *c, maps *m)
     return 0;
 }
 
-
 int buttons_plus_x(window *wndw, options *opt, cursor *c, maps *m)
 {
     ++m->map_x;

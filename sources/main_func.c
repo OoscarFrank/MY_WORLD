@@ -85,7 +85,6 @@ int main_func(window *wndw, options *sprt, maps *m, cursor *c)
     sfRenderWindow_setFramerateLimit(wndw->window, 60);
     while (sfRenderWindow_isOpen(wndw->window)) {
         sfRenderWindow_display(wndw->window);
-        sfRenderWindow_clear(wndw->window, sfBlack);
         launch_event(m, c, wndw, sprt);
         if (sprt->params == 5)
             draw_spcuts(wndw, sprt);
