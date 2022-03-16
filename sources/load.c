@@ -19,7 +19,7 @@ void len_y_x(char *str, maps *m)
             ++m->map_y;
 }
 
-int next_number(int **nw_map, int i, int j, char *tmp, int cp)
+int next_number(int **nw_map, pos p, char *tmp, int cp)
 {
     int nxt = 0;
     int multi = 1;
@@ -32,7 +32,7 @@ int next_number(int **nw_map, int i, int j, char *tmp, int cp)
         nxt += tmp[cp] - 48;
         ++cp;
     }
-    nw_map[i][j] = nxt * multi;
+    nw_map[p.y][p.x] = nxt * multi;
     for (; tmp[cp] == ',' || tmp[cp] == '\n'; ++cp);
     return cp;
 }
@@ -53,7 +53,7 @@ int chg_map(maps *m)
     for (int i = 0; i < m->map_y; ++i) {
         nw_map[i] = malloc(sizeof(int) * (2 * (m->map_x + 1)));
         for (int j = 0; j < m->map_x; ++j)
-            cp = next_number(nw_map, i, j, tmp, cp);
+            cp = next_number(nw_map, (pos){j, i}, tmp, cp);
     }
     m->td_map = nw_map;
     return 0;

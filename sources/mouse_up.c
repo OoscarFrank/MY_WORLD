@@ -66,7 +66,8 @@ void mouse_event(sfEvent event, cursor *c, maps *m, options *sprt)
         if (event.mouseWheelScroll.delta == 1)
             !sprt->ctrl_pressed ? ++c->radius : ++m->zoom;
         else
-            !sprt->ctrl_pressed ? (c->radius > 10 ? --c->radius : (c->radius = c->radius))
+            !sprt->ctrl_pressed ? (c->radius > 10 ? --c->radius :
+            (c->radius = c->radius))
             : (m->zoom > 10 ? --m->zoom : (m->zoom = m->zoom));
     }
 }

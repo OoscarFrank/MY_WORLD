@@ -18,6 +18,7 @@ void move_other_cursor(cursor *c, sfRenderWindow *wnd, maps *m)
 {
     int tmp_x = sfMouse_getPosition(NULL).x;
     int tmp_y = sfMouse_getPosition(NULL).y;
+
     clean_for(c);
     if (((tmp_x - c->radius) > 0) && ((tmp_y - c->radius) > 0))
         draw_empty_circle(sfWhite, c->framebuffer, (circle)
@@ -30,6 +31,7 @@ int move_cursor(cursor *c, sfRenderWindow *wnd, maps *m)
 {
     int x = 0;
     int y = 0;
+
     if (c->style) {
         move_other_cursor(c, wnd, m);
         return 1;

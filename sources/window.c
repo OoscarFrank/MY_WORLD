@@ -15,5 +15,6 @@ void params_window(window *wndw, options *sprt)
     sprt->barre = sfTexture_createFromFile("ressources/barre.png", NULL);
     sprt->menu = sfTexture_createFromFile("ressources/mode_menu.png", NULL);
     sprt->cuts = sfTexture_createFromFile("ressources/shortcuts.png", NULL);
-    wndw->window = sfRenderWindow_create(mode, "my_world", sfResize | sfClose | sfFullscreen, NULL);
+    wndw->window = sfRenderWindow_create(mode, "my_world",
+    sfResize | sfClose | sfFullscreen, NULL);
 }
