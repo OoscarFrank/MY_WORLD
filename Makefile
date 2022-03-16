@@ -34,7 +34,8 @@ SRC	=	sources/first.c				\
 		sources/event_key.c			\
 		sources/load.c				\
 		sources/sec_event_key.c		\
-		sources/cond_button_last.c
+		sources/cond_button_last.c	\
+		sources/button_plus.c		\
 
 LIB = -l csfml-graphics -O2 -lm -l csfml-audio	\
 		-l csfml-system -l csfml-window -Wall

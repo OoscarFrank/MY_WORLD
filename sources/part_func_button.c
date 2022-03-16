@@ -9,15 +9,15 @@
 
 void nine_part_button(window *wndw, options *opt, cursor *c, maps *m)
 {
-    factory_button(opt, &go_home, (sfIntRect){3608, 0, 200, 40},
+    factory_button(opt, &load_button, (sfIntRect){3608, 0, 200, 40},
         (sfVector2f){140, 250});
     opt->ar_btn[LOAD_MAP].params = 0;
     opt->ar_btn[LOAD_MAP].screen = 0;
-    factory_button(opt, &go_home, (sfIntRect){3808, 0, 40, 40},
+    factory_button(opt, &buttons_plus_x, (sfIntRect){3808, 0, 40, 40},
         (sfVector2f){210, 550});
     opt->ar_btn[PLUS_X].params = 0;
     opt->ar_btn[PLUS_X].screen = 0;
-    factory_button(opt, &go_home, (sfIntRect){3848, 0, 40, 40},
+    factory_button(opt, &buttons_minus_x, (sfIntRect){3848, 0, 40, 40},
         (sfVector2f){270, 550});
     opt->ar_btn[MOINS_X].params = 0;
     opt->ar_btn[MOINS_X].screen = 0;

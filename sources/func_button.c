@@ -55,7 +55,7 @@ void third_part_button(window *wndw, options *opt, cursor *c, maps *m)
         (sfVector2f){201, 62});
     opt->ar_btn[OPEN_PARAMS].params = 1;
     opt->ar_btn[OPEN_PARAMS].screen = 0;
-    factory_button(opt, &go_home, (sfIntRect) {1501, 0, 200, 40},
+    factory_button(opt, &save_button, (sfIntRect) {1501, 0, 200, 40},
                    (sfVector2f) {140, 190});
     opt->ar_btn[SAVE_FILE].params = 0;
     opt->ar_btn[SAVE_FILE].screen = 0;

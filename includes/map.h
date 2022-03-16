@@ -275,5 +275,10 @@ void put_pixel(int x, int y, sfColor color, sfUint8 *framebuffer);
 void draw_empty_circle(sfColor color, sfUint8 *frambuffer, circle crl);
 int rzero(window *wndw, options *opt, cursor *c, maps *m);
 void ten_part_button(window *wndw, options *opt, cursor *c, maps *m);
-
+int load_button(window *wndw, options *opt, cursor *c, maps *m);
+int save_button(window *wndw, options *opt, cursor *c, maps *m);
+int buttons_minus_x(window *wndw, options *opt, cursor *c, maps *m);
+int buttons_plus_x(window *wndw, options *opt, cursor *c, maps *m);
+int load_button(window *wndw, options *opt, cursor *c, maps *m);
+int save_button(window *wndw, options *opt, cursor *c, maps *m);
 #endif
