@@ -39,15 +39,15 @@ void write_save(maps *m, window *wndw)
     free(tmp);
 }
 
-int loop_instruction(window *wndw, options *sprt, redus_map re, int i)
+int loop_instruction(window *wndw, options *sprt, redus_map re)
 {
     if (sprt->begin == 0 && sprt->params == 1 || sprt->params == 2 ||
     sprt->params == 4 || sprt->params == 5 || sprt->params == 6)
-        draw_spfond(wndw, sprt, i);
+        draw_spfond(wndw, sprt);
     if (sprt->begin == 0) {
         my_world(wndw->window, re.m, re.c);
         my_world(wndw->window, re.m, re.c);
-        draw_spfond(wndw, sprt, i);
+        draw_spfond(wndw, sprt);
         draw_spbarre(wndw, sprt);
     }
     if (sprt->begin == 3)
@@ -59,24 +59,38 @@ int loop_instruction(window *wndw, options *sprt, redus_map re, int i)
     return 0;
 }
 
+void i_time(options *sprt, window *wndw)
+{
+    sprt->ti.timer_total += sfClock_getElapsedTime
+    (sprt->total_clock).microseconds - sprt->ti.timer;
+    while (sprt->ti.timer_total > 16000) {
+        if (sprt->mv == 1 && sprt->i < 900)
+            sprt->i += 10;
+        if (sprt->i >= 900 && sprt->mv == 1)
+            open_p(wndw, sprt);
+        if (sprt->mv == -1 && sprt->i > -5)
+            sprt->i -= 10;
+        sprt->ti.timer_total -= 16000;
+    }
+    sprt->ti.timer = sfClock_getElapsedTime(sprt->total_clock).microseconds;
+}
+
 int main_func(window *wndw, options *sprt, maps *m, cursor *c)
 {
-    int i = 0;
-    int j = 0;
+    sprt->i = 0;
+    sprt->total_clock = sfClock_create();
     init_all(wndw, sprt, m, c);
+    sprt->ti.timer = 0;
+    sprt->ti.timer_total = 0;
+    sfRenderWindow_setFramerateLimit(wndw->window, 60);
     while (sfRenderWindow_isOpen(wndw->window)) {
         sfRenderWindow_display(wndw->window);
         sfRenderWindow_clear(wndw->window, sfBlack);
         launch_event(m, c, wndw, sprt);
         if (sprt->params == 5)
             draw_spcuts(wndw, sprt);
-        if (sprt->mv == 1 && i < 912)
-            ++i;
-        if (i == 912 && sprt->mv == 1)
-            open_p(wndw, sprt);
-        if (sprt->mv == -1 && i > - 5)
-            --i;
-        loop_instruction(wndw, sprt, (redus_map) {m, c}, i);
+        i_time(sprt, wndw);
+        loop_instruction(wndw, sprt, (redus_map) {m, c});
         is_touched_button(wndw, sprt, c);
     }
     return 0;

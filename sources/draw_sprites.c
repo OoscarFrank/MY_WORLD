@@ -12,9 +12,9 @@ void draw_spwelcome(window *wndw, options *sprt)
     sfRenderWindow_drawSprite(wndw->window, sprt->spwelcome, NULL);
 }
 
-void draw_spfond(window *wndw, options *sprt, int i)
+void draw_spfond(window *wndw, options *sprt)
 {
-    sfVector2f prems = {40, 65 - 915 + i};
+    sfVector2f prems = {40, 65 - 915 + sprt->i};
     sfSprite_setPosition(sprt->spfond, prems);
     sfRenderWindow_drawSprite(wndw->window, sprt->spfond, NULL);
 }

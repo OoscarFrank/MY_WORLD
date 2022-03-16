@@ -64,7 +64,7 @@ void third_part_button(window *wndw, options *opt, cursor *c, maps *m)
     opt->ar_btn[LOG_OUT].params = 0;
     opt->ar_btn[LOG_OUT].screen = 0;
     factory_button(opt, &close_params, (sfIntRect){1424, 0, 77, 24},
-        (sfVector2f){201, 979});
+        (sfVector2f){201, 965});
     opt->ar_btn[CLOSE_PARAMS].params = 0;
     opt->ar_btn[CLOSE_PARAMS].screen = 0;
     fourth_part_button(wndw, opt, c, m);

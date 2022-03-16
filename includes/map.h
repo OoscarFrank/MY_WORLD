@@ -89,6 +89,12 @@ typedef struct {
 }window;
 
 typedef struct {
+    unsigned long timer_total;
+    unsigned long timer;
+}timer;
+
+typedef struct {
+    int i;
     int mv;
     int params;
     int begin;
@@ -105,7 +111,9 @@ typedef struct {
     sfTexture *cuts;
     sfSprite *spcuts;
     sfTexture *t;
+    sfClock *total_clock;
     struct button *ar_btn;
+    timer ti;
 }options;
 
 typedef enum button_name {
@@ -197,7 +205,7 @@ int main_func(window *wndw, options *sprt, maps *m, cursor *c);
 void params_window(window *wndw, options *sprt);
 int event_window(window *wndw, options *sprt);
 void init_fond(window *wndw, options *otln);
-void draw_spfond(window *wndw, options *otln, int i);
+void draw_spfond(window *wndw, options *otln);
 void init_off(window *wndw, options *sprt);
 void init_welcome(window *wndw, options *sprt);
 void draw_spwelcome(window *wndw, options *sprt);

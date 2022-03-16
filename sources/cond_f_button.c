@@ -24,7 +24,7 @@ int close_params(window *wndw, options *opt, cursor *c, maps *m)
     opt->ar_btn[PLUS_Y].params = 0;
     opt->ar_btn[MOINS_Y].params = 0;
     opt->ar_btn[DEF_X].params = 0;
-    opt->ar_btn[DEF_X].params = 0;
+    opt->ar_btn[DEF_Y].params = 0;
     opt->mv = -1;
     return 0;
 }
