@@ -18,7 +18,7 @@ void draw_circle(sfColor color, sfUint8 *frambuffer, circle crl)
     for (int i = crl.x - crl.radius; i <= crl.x + crl.radius + 1; ++i)
         for (int j = crl.y - crl.radius; j <= crl.y + crl.radius + 1; ++j)
             ((sqrt((pow(i - crl.x, 2) + pow(j - crl.y, 2))) <= crl.radius)
-             && (j % 8 == 0) && (i % 8 == 0)) ?
+            && (j % 8 == 0) && (i % 8 == 0)) ?
             put_pixel(i, j, color, frambuffer) : ++verif;
 }
 
@@ -36,8 +36,8 @@ void draw_empty_circle(sfColor color, sfUint8 *frambuffer, circle crl)
     for (int i = crl.x - crl.radius; i <= crl.x + crl.radius + 1; ++i)
         for (int j = crl.y - crl.radius; j <= crl.y + crl.radius + 1; ++j) {
             ((verif_circle(i, j, crl.x, crl.y) == crl.radius) ||
-             (verif_circle(i, j, crl.x, crl.y) == crl.radius - 1) ||
-             (verif_circle(i, j, crl.x, crl.y) == crl.radius + 1)) ?
+            (verif_circle(i, j, crl.x, crl.y) == crl.radius - 1) ||
+            (verif_circle(i, j, crl.x, crl.y) == crl.radius + 1)) ?
             put_pixel(i, j, color, frambuffer) : ++verif;
         }
 }

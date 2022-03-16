@@ -21,7 +21,7 @@ void move_other_cursor(cursor *c, sfRenderWindow *wnd, maps *m)
 
     clean_for(c);
     if (((tmp_x - c->radius) > 0) && ((tmp_y - c->radius) > 0))
-        draw_empty_circle(sfWhite, c->framebuffer, (circle)
+        draw_empty_circle(sfWhite, c->framebuffer, (circle) 
         {tmp_y, tmp_x, c->radius});
     sfTexture_updateFromPixels(c->t, c->framebuffer, WIDTH, HEIGHT, 0, 0);
     sfRenderWindow_drawSprite(wnd, c->s, NULL);

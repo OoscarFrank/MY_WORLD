@@ -13,7 +13,7 @@ void decal_map(maps *m, int x, int y, angle_bs aglb)
     (aglb.tmp_y + sin(aglb.angle_b) *
     (aglb.tmp_x - aglb.back_x * sin(aglb.ang_h)));
     m->water_map[y][x].x = cos(aglb.angle_a) *
-                           (aglb.tmp_x - cos(aglb.angle_a) * aglb.tmp_y);
+    (aglb.tmp_x - cos(aglb.angle_a) * aglb.tmp_y);
     m->map[y][x].x *= m->zoom;
     m->map[y][x].y *= m->zoom;
     m->map[y][x].x += m->decal_x;
@@ -38,9 +38,9 @@ void project_iso_point(int x, int y, int z, maps *m)
     x += m->map_x / 2;
     y += m->map_y / 2;
     m->map[y][x].y = sin(aglb.angle_b) *
-            (aglb.tmp_y + sin(aglb.angle_b) * (aglb.tmp_x - aglb.tmp_z));
+    (aglb.tmp_y + sin(aglb.angle_b) * (aglb.tmp_x - aglb.tmp_z));
     m->map[y][x].x = cos(aglb.angle_a) *
-            (aglb.tmp_x - cos(aglb.angle_a) * aglb.tmp_y);
+    (aglb.tmp_x - cos(aglb.angle_a) * aglb.tmp_y);
     decal_map(m, x, y, aglb);
 }
 
