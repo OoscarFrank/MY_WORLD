@@ -9,9 +9,9 @@
 
 void alloc_map(sfVector2f **map, maps *m)
 {
-    for (int i = 0; i < m->map_y * 2; ++i) {
-        map[i] = malloc(sizeof(sfVector2f * ) * (m->map_x * 2 + 1) + 1);
-        for (int j = 0; j < m->map_x * 2; ++j)
+    for (int i = 0; i < m->map_y * 4; ++i) {
+        map[i] = malloc(sizeof(sfVector2f * ) * (m->map_x * 4 + 1) + 1);
+        for (int j = 0; j < m->map_x * 4; ++j)
             map[i][j] = (sfVector2f) {0, 0};
     }
 }
@@ -19,8 +19,8 @@ void alloc_map(sfVector2f **map, maps *m)
 void alloc_3d(int **map, maps *m)
 {
     for (int i = 0; i < m->map_y * 2; ++i) {
-        map[i] = malloc(sizeof(int) * (m->map_x * 2 + 1));
-        for (int j = 0; j < m->map_x * 2; ++j)
+        map[i] = malloc(sizeof(int) * (m->map_x * 4 + 1));
+        for (int j = 0; j < m->map_x * 4; ++j)
             map[i][j] = 0;
     }
 }
@@ -30,9 +30,9 @@ void init_maps(maps *m)
     sfFont *ft = sfFont_createFromFile("ressources/ft.ttf");
     m->map_x = 50;
     m->map_y = 50;
-    m->td_map = malloc(sizeof(int **) * (m->map_y * 2+ 1));
-    m->map = malloc(sizeof(sfVector2f *) * (m->map_y * 2 + 1));;
-    m->water_map = malloc(sizeof(sfVector2f *) * (m->map_y * 2) + 1);
+    m->td_map = malloc(sizeof(int **) * (m->map_y * 4 + 1));
+    m->map = malloc(sizeof(sfVector2f *) * (m->map_y * 4 + 1));;
+    m->water_map = malloc(sizeof(sfVector2f *) * (m->map_y * 4) + 1);
     alloc_3d(m->td_map , m);
     alloc_map(m->map, m);
     alloc_map(m->water_map, m);
