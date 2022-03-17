@@ -111,6 +111,8 @@ typedef struct {
     sfTexture *cuts;
     sfSprite *spcuts;
     sfTexture *t;
+    sfTexture *txt_l_s;
+    sfSprite *sptxt_l_s;
     sfClock *total_clock;
     struct button *ar_btn;
     timer ti;
@@ -289,4 +291,7 @@ int buttons_minus_x(window *wndw, options *opt, cursor *c, maps *m);
 int buttons_plus_x(window *wndw, options *opt, cursor *c, maps *m);
 int load_button(window *wndw, options *opt, cursor *c, maps *m);
 int save_button(window *wndw, options *opt, cursor *c, maps *m);
+void init_txt_l_s(window *wndw, options *sprt);
+void draw_sp_txt_ls(window *wndw, options *sprt);
+
 #endif

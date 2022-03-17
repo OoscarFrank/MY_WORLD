@@ -14,5 +14,6 @@ void init_sprites(window *wndw, options *sprt)
     init_barre(wndw, sprt);
     init_menu(wndw, sprt);
     init_cuts(wndw, sprt);
+    init_txt_l_s(wndw, sprt);
     sprt->mv = 0;
 }
