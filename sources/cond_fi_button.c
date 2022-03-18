@@ -35,7 +35,6 @@ int open_params(window *wndw, options *opt, cursor *c, maps *m)
     return 0;
 }
 
-
 int open_zoom(window *wndw, options *opt, cursor *c, maps *m)
 {
     opt->ar_btn[ZOOM].params = 1;
