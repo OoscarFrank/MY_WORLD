@@ -10,11 +10,11 @@
 
 void init_txt_l_s(window *wndw, options *sprt)
 {
-     sfVector2f prems = {660, 440};
-     sfIntRect first = {0, 0, 800, 600};
-     sprt->sptxt_l_s = sfSprite_create();
-     sfSprite_setTexture(sprt->sptxt_l_s, sprt->txt_l_s, sfTrue);
-     sfSprite_setPosition(sprt->sptxt_l_s, prems);
+    sfVector2f prems = {660, 440};
+    sfIntRect first = {0, 0, 800, 600};
+    sprt->sptxt_l_s = sfSprite_create();
+    sfSprite_setTexture(sprt->sptxt_l_s, sprt->txt_l_s, sfTrue);
+    sfSprite_setPosition(sprt->sptxt_l_s, prems);
 }
 
 void draw_sp_txt_ls(window *wndw, options *sprt)
